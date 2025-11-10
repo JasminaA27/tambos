@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ron - Licorería Tambos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --color-primary:#8B0000;
+      --color-secondary:#000000;
+      --color-accent:#C41E3A;
+      --color-light:#FFFFFF;
+    }
+    body { font-family:'Segoe UI',sans-serif; background:#f9f9f9; }
+    .navbar { background:linear-gradient(135deg,#000 0%,#8B0000 100%); }
+    .navbar-brand,.nav-link { color:#fff!important; }
+    .product-card { border:none; box-shadow:0 2px 10px rgba(0,0,0,0.2); transition:0.3s; }
+    .product-card:hover { transform:scale(1.03); }
+    .product-info { background:white; padding:15px; border-radius:0 0 10px 10px; }
+    .btn-carrito { background:#C41E3A; color:white; border:none; }
+    .btn-carrito:hover { background:#8B0000; }
+    footer { background:linear-gradient(135deg,#000,#8B0000); color:white; padding:30px 0; margin-top:60px; text-align:center; }
+    select.form-select-sm { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="fas fa-wine-bottle"></i> TAMBOS</a>
+      <div class="ms-auto">
+        <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger">0</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Rones disponibles</h2>
+
+    <!-- 🔍 Filtro por marca -->
+    <div class="row mb-4">
+      <div class="col-md-4 mx-auto">
+        <select class="form-select" id="marcaFiltro">
+          <option value="todos" selected>Todos los rones</option>
+          <option value="Bacardi">Bacardi</option>
+          <option value="Cartavio">Cartavio</option>
+          <option value="Flor de Caña">Flor de Caña</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row" id="listaProductos"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Licorería Tambos | Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const productos = [
+      { id: 1, nombre: "Ron Bacardi Blanco", marca: "Bacardi", img: "https://images.unsplash.com/photo-1609428035459-58d9d47f9d87", precioBase: 40 },
+      { id: 2, nombre: "Ron Cartavio 5 años", marca: "Cartavio", img: "https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b", precioBase: 55 },
+      { id: 3, nombre: "Ron Flor de Caña 7 años", marca: "Flor de Caña", img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc", precioBase: 70 },
+    ];
+
+    const contenedor = document.getElementById('listaProductos');
+    const filtroMarca = document.getElementById('marcaFiltro');
+
+    // 🧾 Mostrar productos filtrados
+    function mostrarProductos(filtro = 'todos') {
+      contenedor.innerHTML = '';
+      productos.filter(p => filtro === 'todos' || p.marca === filtro)
+      .forEach(prod => {
+        contenedor.innerHTML += `
+          <div class="col-md-4 mb-4">
+            <div class="card product-card">
+              <img src="${prod.img}" alt="${prod.nombre}">
+              <div class="product-info">
+                <h5>${prod.nombre}</h5>
+                <p><strong>Marca:</strong> ${prod.marca}</p>
+                <label class="form-label">Tamaño:</label>
+                <select class="form-select form-select-sm" id="ml-${prod.id}" onchange="actualizarPrecio(${prod.id}, this.value)">
+                  <option value="300">300 ml - S/ ${(prod.precioBase * 0.5).toFixed(2)}</option>
+                  <option value="750" selected>750 ml - S/ ${prod.precioBase.toFixed(2)}</option>
+                  <option value="1000">1 L - S/ ${(prod.precioBase * 1.3).toFixed(2)}</option>
+                </select>
+                <p id="precio-${prod.id}" class="mt-2 fw-bold text-danger">Precio: S/ ${prod.precioBase.toFixed(2)}</p>
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-carrito" onclick="agregarCarrito(${prod.id})"><i class="fas fa-cart-plus"></i> Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
+    // 💰 Actualizar precio según mililitros
+    function actualizarPrecio(id, ml) {
+      const producto = productos.find(p => p.id === id);
+      let nuevoPrecio = producto.precioBase;
+      if (ml == 300) nuevoPrecio *= 0.5;
+      if (ml == 1000) nuevoPrecio *= 1.3;
+      document.getElementById(`precio-${id}`).textContent = `Precio: S/ ${nuevoPrecio.toFixed(2)}`;
+    }
+
+    // 🛒 Agregar producto al carrito
+    function agregarCarrito(id) {
+      const producto = productos.find(p => p.id === id);
+      const ml = document.getElementById(`ml-${id}`).value;
+      let precio = producto.precioBase;
+      if (ml == 300) precio *= 0.5;
+      if (ml == 1000) precio *= 1.3;
+      
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.push({ ...producto, ml, precio });
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert(`✅ ${producto.nombre} agregado al carrito`);
+      actualizarContador();
+    }
+
+    // 🔢 Actualizar contador carrito
+    function actualizarContador() {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      document.getElementById("contadorCarrito").textContent = carrito.length;
+    }
+
+    // 🎯 Filtrado dinámico
+    filtroMarca.addEventListener('change', e => mostrarProductos(e.target.value));
+
+    mostrarProductos();
+    actualizarContador();
+  </script>
+</body>
+</html>
