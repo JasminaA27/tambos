@@ -1,0 +1,95 @@
+ :root {
+      --color-primary: #8B0000;
+      --color-secondary: #000000;
+      --color-accent: #C41E3A;
+      --color-light: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--color-secondary);
+      background-color: #f9f9f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 1rem 0;
+    }
+
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--color-light) !important;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-link {
+      color: var(--color-light) !important;
+      font-weight: 500;
+      margin: 0 0.5rem;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover:after {
+      width: 80%;
+    }
+
+    .dropdown-menu {
+      background-color: var(--color-secondary);
+      border: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .dropdown-item {
+      color: var(--color-light);
+      transition: background 0.3s;
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--color-accent);
+      color: #fff;
+    }
+
+    .search-box {
+      position: relative;
+      width: 300px;
+    }
+
+    .search-box input {
+      border-radius: 25px;
+      padding-right: 45px;
+      border: 2px solid var(--color-accent);
+    }
+
+    .search-box button {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--color-accent);
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      color: white;
+    }

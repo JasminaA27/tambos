@@ -7,38 +7,136 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; }
-    .navbar { background: linear-gradient(135deg, #000, #8B0000); }
-    .navbar-brand, .nav-link { color: #fff !important; }
-    .card { box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); }
-    footer { background: linear-gradient(135deg, #000, #8B0000); color: white; padding: 30px 0; margin-top: 60px; text-align: center; }
-    input[type="number"] { width: 80px; text-align: center; }
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+      background-color: #f4f4f4;
+    }
+
+    .navbar { 
+      background: linear-gradient(135deg, #000000, #8B0000); 
+    }
+
+    .navbar-brand { 
+      color: #fff !important; 
+      font-weight: 600; 
+      letter-spacing: 1px;
+    }
+
+    .main-container {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    /* Tarjetas de producto */
+    .card {
+      border: none;
+      border-radius: 12px;
+      background: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      border-radius: 10px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Panel lateral del resumen */
+    .resumen {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 25px;
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+
+    .resumen h4 {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .resumen hr {
+      border: 1px solid #ddd;
+    }
+
+    .resumen label {
+      font-weight: 500;
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #008000, #006400);
+      border: none;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #8B0000, #FF0000);
+      border: none;
+    }
+
+    footer { 
+      background: linear-gradient(135deg, #000000, #8B0000); 
+      color: white; 
+      padding: 25px 0; 
+      text-align: center; 
+      margin-top: 60px; 
+    }
+
+    @media (max-width: 991px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="index.html"><i class="fas fa-wine-bottle"></i> TAMBOS</a>
     </div>
   </nav>
 
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">🛒 Tu Carrito</h2>
-    <div id="listaCarrito" class="row"></div>
+  <!-- CONTENIDO -->
+  <div class="container main-container">
+    
+    <!-- LISTA DE PRODUCTOS -->
+    <div>
+      <h2 class="text-dark mb-4 fw-bold text-center">🛒 Tu Carrito</h2>
+      <div id="listaCarrito" class="row g-3"></div>
+    </div>
 
-    <div class="mt-4 text-end">
-      <h4 id="subtotal"></h4>
-      <h3 id="total" class="text-danger"></h3>
+    <!-- RESUMEN DE COMPRA -->
+    <div class="resumen">
+      <h4>Resumen de compra</h4>
+      <hr>
+      <p id="subtotal" class="mb-1 fs-6"></p>
+      <h5 id="total" class="text-danger fw-bold"></h5>
 
-      <label class="form-label mt-3">Método de pago:</label>
-      <select class="form-select w-25 d-inline-block" id="metodoPago">
-        <option>Yape</option>
-        <option>Plin</option>
-        <option>Tarjeta</option>
-      </select>
+      <div class="mt-4">
+        <label for="metodoPago" class="form-label">Método de pago:</label>
+        <select class="form-select mb-3" id="metodoPago">
+          <option>Yape</option>
+          <option>Plin</option>
+          <option>Tarjeta</option>
+        </select>
 
-      <button class="btn btn-success ms-2" onclick="simularPago()">Pagar</button>
-      <button class="btn btn-danger ms-2" onclick="vaciarCarrito()">Vaciar carrito</button>
+        <button class="btn btn-success w-100 mb-2" onclick="simularPago()">
+          <i class="fas fa-check-circle"></i> Pagar ahora
+        </button>
+        <button class="btn btn-danger w-100" onclick="vaciarCarrito()">
+          <i class="fas fa-trash-alt"></i> Vaciar carrito
+        </button>
+      </div>
     </div>
   </div>
 
@@ -47,77 +145,90 @@
   </footer>
 
   <script>
-    // Mostrar carrito
-    function mostrarCarrito() {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      let contenedor = document.getElementById("listaCarrito");
-      contenedor.innerHTML = "";
-      let total = 0;
+  function mostrarCarrito() {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let contenedor = document.getElementById("listaCarrito");
+    contenedor.innerHTML = "";
+    let total = 0;
 
-      carrito.forEach((p, i) => {
-        let subtotal = p.precio * (p.cantidad || 1);
-        total += subtotal;
+    // 🧹 Filtrar productos válidos (que tengan precio e imagen)
+    carrito = carrito.filter(p => p && p.precio && p.nombre);
 
-        contenedor.innerHTML += `
-          <div class="col-md-4 mb-3">
-            <div class="card p-3">
-              <img src="${p.img}" class="card-img-top mb-2" style="height:200px;object-fit:cover;">
-              <h5>${p.nombre}</h5>
-              <p>Marca: ${p.marca}</p>
-              <p>Tamaño: ${p.ml} ml</p>
-              <div class="d-flex align-items-center mb-2">
-                <label class="me-2">Cantidad:</label>
-                <input type="number" min="1" value="${p.cantidad || 1}" onchange="cambiarCantidad(${i}, this.value)">
-              </div>
-              <p class="fw-bold text-danger mb-2">Precio unitario: S/ ${p.precio.toFixed(2)}</p>
-              <p class="fw-bold">Subtotal: S/ ${subtotal.toFixed(2)}</p>
-              <button class="btn btn-sm btn-danger" onclick="eliminarItem(${i})">Eliminar</button>
+    // Si había datos antiguos corruptos, se limpian
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    if (carrito.length === 0) {
+      contenedor.innerHTML = `<div class="text-center text-muted"><h5>No hay productos en tu carrito 🛒</h5></div>`;
+      document.getElementById("subtotal").textContent = "Subtotal: S/ 0.00";
+      document.getElementById("total").textContent = "Total: S/ 0.00";
+      return;
+    }
+
+    carrito.forEach((p, i) => {
+      let cantidad = p.cantidad ? parseInt(p.cantidad) : 1;
+      let precio = p.precio ? parseFloat(p.precio) : 0;
+      let subtotal = precio * cantidad;
+      total += subtotal;
+
+      contenedor.innerHTML += `
+        <div class="col-md-4 mb-3">
+          <div class="card p-3">
+            <img src="${p.img || ''}" class="card-img-top mb-2" style="height:200px;object-fit:cover;">
+            <h5>${p.nombre || 'Producto sin nombre'}</h5>
+            <p>Marca: ${p.marca || '---'}</p>
+            <p>Tamaño: ${p.ml || '?'} ml</p>
+            <div class="d-flex align-items-center mb-2">
+              <label class="me-2">Cantidad:</label>
+              <input type="number" min="1" value="${cantidad}" onchange="cambiarCantidad(${i}, this.value)">
             </div>
-          </div>`;
-      });
+            <p class="fw-bold text-danger mb-2">Precio unitario: S/ ${precio.toFixed(2)}</p>
+            <p class="fw-bold">Subtotal: S/ ${subtotal.toFixed(2)}</p>
+            <button class="btn btn-sm btn-danger" onclick="eliminarItem(${i})"><i class="fas fa-trash"></i> Eliminar</button>
+          </div>
+        </div>`;
+    });
 
-      document.getElementById("subtotal").textContent = `Subtotal: S/ ${total.toFixed(2)}`;
-      document.getElementById("total").textContent = `Total: S/ ${total.toFixed(2)}`;
-    }
+    document.getElementById("subtotal").textContent = `Subtotal: S/ ${total.toFixed(2)}`;
+    document.getElementById("total").textContent = `Total: S/ ${total.toFixed(2)}`;
+  }
 
-    // Cambiar cantidad
-    function cambiarCantidad(i, nuevaCantidad) {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito[i].cantidad = parseInt(nuevaCantidad);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      mostrarCarrito();
-    }
-
-    // Eliminar producto del carrito
-    function eliminarItem(i) {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito.splice(i, 1);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      mostrarCarrito();
-    }
-
-    // Vaciar carrito
-    function vaciarCarrito() {
-      localStorage.removeItem("carrito");
-      mostrarCarrito();
-    }
-
-    // Simular pago
-    function simularPago() {
-      let metodo = document.getElementById("metodoPago").value;
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío");
-        return;
-      }
-      alert(`✅ Pago simulado con ${metodo}. ¡Gracias por tu compra!`);
-      localStorage.removeItem("carrito");
-      mostrarCarrito();
-    }
-
+  function cambiarCantidad(i, nuevaCantidad) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito[i].cantidad = parseInt(nuevaCantidad);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     mostrarCarrito();
-  </script>
+  }
+
+  function eliminarItem(i) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.splice(i, 1);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    mostrarCarrito();
+  }
+
+  function vaciarCarrito() {
+    localStorage.removeItem("carrito");
+    mostrarCarrito();
+  }
+
+  function simularPago() {
+    let metodo = document.getElementById("metodoPago").value;
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío");
+      return;
+    }
+    alert(`✅ Pago simulado con ${metodo}. ¡Gracias por tu compra!`);
+    localStorage.removeItem("carrito");
+    mostrarCarrito();
+  }
+
+  mostrarCarrito();
+</script>
+
 </body>
 </html>
+``
+
 
 
