@@ -1,201 +1,313 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promociones - Licorería Tambos</title>
+  <title>Combos - Licorería Tambos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    /* 🔝 Navbar */
-    .navbar {
-      background: linear-gradient(135deg, #000000, #8B0000);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    .navbar-brand, .nav-link {
-      color: #fff !important;
-      font-weight: 600;
-    }
-
-    /* 🎁 Título principal */
-    .section-title {
-      color: #8B0000;
-      font-weight: bold;
-      margin-top: 40px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-align: center;
-    }
-
-    /* 🧃 Tarjeta cuadrada */
-    .product-card {
-      background: #fff;
-      border: none;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    /* 📸 Imagen cuadrada */
-    .product-card img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-    }
-
-    /* 📝 Info */
-    .product-info {
-      padding: 20px;
-    }
-    .product-info h5 {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #000;
-      margin-bottom: 10px;
-    }
-    .product-info p {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    .price {
-      color: #C41E3A;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .btn-carrito {
-      background-color: #C41E3A;
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 5px;
-      padding: 10px;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-    .btn-carrito:hover {
-      background-color: #8B0000;
-      transform: scale(1.02);
-    }
-
-    /* 🔻 Footer */
-    footer {
-      background: linear-gradient(135deg, #000000, #8B0000);
-      color: white;
-      text-align: center;
-      padding: 25px 0;
-      margin-top: 60px;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  
 </head>
+
 <body>
 
-  <!-- 🔝 Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="#">
         <i class="fas fa-wine-bottle"></i> TAMBOS
       </a>
-      <div class="ms-auto">
-        <a class="nav-link" href="carrito.html">🛒 
-          <span id="contadorCarrito" class="badge bg-danger">0</span>
-        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
+              <li><a class="dropdown-item" href="ron.html">Ron</a></li>
+              <li><a class="dropdown-item" href="pisco.html">Pisco</a></li>
+              <li><a class="dropdown-item" href="whisky.html">Whisky</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="promociones.html">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="combos.html">Combos</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+
+          <li class="nav-item">
+            <div class="search-box d-none d-lg-block">
+              <input type="text" class="form-control" placeholder="Buscar productos...">
+              <button><i class="fas fa-search"></i></button>
+            </div>
+          </li>
+
+          <li class="nav-item ms-3">
+            <div class="cart-icon">
+              <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger"></span></a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
 
-  <!-- 🎁 Sección de Promociones -->
-  <div class="container">
-    <h2 class="section-title mb-5">Promociones Especiales</h2>
-    <div class="row" id="listaProductos"></div>
+  <!-- Hero Banner -->
+  <div class="combos-hero">
+    <div class="container text-center">
+      <h1><i class="fas fa-boxes"></i> COMBOS ESPECIALES</h1>
+      <p>Arma tu pack perfecto y ahorra más 💰</p>
+      <p style="font-size: 1rem; opacity: 0.9;">✨ Ideal para fiestas, regalos y celebraciones ✨</p>
+    </div>
   </div>
 
-  <!-- ⚫ Footer -->
+  <!-- Filtros por Campaña -->
+  <div class="container">
+    <div class="campaign-filters">
+      <button class="filter-btn active" onclick="filtrarCampana('todos')">
+        <i class="fas fa-layer-group"></i> Todos los Combos
+      </button>
+      <button class="filter-btn" onclick="filtrarCampana('navidad')">
+        <i class="fas fa-tree"></i> Navidad
+      </button>
+      <button class="filter-btn" onclick="filtrarCampana('aniversario')">
+        <i class="fas fa-birthday-cake"></i> Aniversario
+      </button>
+      <button class="filter-btn" onclick="filtrarCampana('verano')">
+        <i class="fas fa-sun"></i> Verano
+      </button>
+      <button class="filter-btn" onclick="filtrarCampana('san-valentin')">
+        <i class="fas fa-heart"></i> San Valentín
+      </button>
+    </div>
+
+    <h2 class="section-title">Nuestros Combos Premium</h2>
+    <div id="listaCombos"></div>
+  </div>
+
   <footer>
-    <p>&copy; 2025 Licorería Tambos | Todos los derechos reservados.</p>
+    <div class="container">
+      <div class="row text-center text-md-start">
+
+        <div class="col-md-3 mb-4">
+          <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
+          <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con
+            atención personalizada.</p>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5>Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="https://heyzine.com/flip-book/011daf7652.html"><i class="fas fa-book"></i> Catálogo disponible</a></li>
+            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219"><i class="fas fa-envelope"></i> Correo masivo</a></li>
+            <li><a href="#"><i class="fas fa-presentation"></i> Presentación</a></li>
+            <li><a href="#"><i class="fas fa-shield-alt"></i> Privacidad y Seguridad</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5>Contáctanos</h5>
+          <p><i class="fas fa-map-marker-alt"></i> Av, Mariscal Catilla 154, Huanta - Ayacucho</p>
+          <p><i class="fas fa-phone"></i> +51 984 328 645</p>
+          <p><i class="fas fa-envelope"></i> contacto@licoreriatambos.pe</p>
+          <div class="social-icons mt-3">
+            <a href="https://www.facebook.com/licoreriatambos" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/licoreriatambos" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/51999888777" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-4 text-center">
+          <h5>Escanéanos</h5>
+          <p>Realiza tu pedido o paga rápido desde tu móvil.</p>
+          <img src="img/qr.jpg" alt="QR Tambos" class="qr-footer">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Licorería Tambos | Todos los derechos reservados.
+      <p>Tomar Bebidas Alcoholicas en Exceso es Daniño</p>
+    </div>
   </footer>
 
-  <!-- 📜 JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
-    const productos = [
-      {
-        id: 1,
-        nombre: "Ron Bacardi Blanco",
-        descripcion: "Clásico ron caribeño suave ideal para cócteles.",
-        img: "https://images.unsplash.com/photo-1609428035459-58d9d47f9d87",
-        precio: 40
-      },
-      {
-        id: 2,
-        nombre: "Pisco Quebranta 500ml",
-        descripcion: "Pisco artesanal de uva quebranta, sabor intenso.",
-        img: "https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b",
-        precio: 55
-      },
-      {
-        id: 3,
-        nombre: "Whisky Johnnie Walker Black",
-        descripcion: "Whisky escocés de sabor profundo y ahumado.",
-        img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc",
-        precio: 120
-      }
-    ];
+document.addEventListener("DOMContentLoaded", () => {
 
-    const contenedor = document.getElementById('listaProductos');
+  const combos = [
+    {
+      id: 1,
+      nombre: "Combo Fiesta Navideña",
+      descripcion: "El pack perfecto para celebrar la Navidad con estilo. Incluye una selección de licores premium para brindar toda la noche.",
+      img: "https://images.unsplash.com/photo-1482327114398-9e5e6e7f3b45?w=800&h=800&fit=crop",
+      productos: [
+        { nombre: "Whisky Johnnie Walker Red Label 750ml", descripcion: "Whisky escocés mezclado de alta calidad", img: "https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=400&h=400&fit=crop", precio: 65 },
+        { nombre: "Ron Bacardi Blanco 750ml", descripcion: "Ron blanco suave ideal para cócteles", img: "https://images.unsplash.com/photo-1609428035459-58d9d47f9d87?w=400&h=400&fit=crop", precio: 45 },
+        { nombre: "Champagne Chandon Brut 750ml", descripcion: "Espumante argentino de calidad premium", img: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&h=400&fit=crop", precio: 55 },
+        { nombre: "Pisco Portón 500ml", descripcion: "Pisco mosto verde acholado premium", img: "https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b?w=400&h=400&fit=crop", precio: 70 }
+      ],
+      descuento: 23,
+      campana: "navidad"
+    },
+    {
+      id: 2,
+      nombre: "Combo Aniversario Premium",
+      descripcion: "Celebra momentos especiales con esta selección exclusiva de bebidas de alta gama.",
+      img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=800&fit=crop",
+      productos: [
+        { nombre: "Whisky Johnnie Walker Black Label 750ml", descripcion: "Whisky escocés de 12 años", img: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=400&h=400&fit=crop", precio: 120 },
+        { nombre: "Pisco Quebranta Premium 750ml", descripcion: "Pisco puro quebranta artesanal", img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=400&fit=crop", precio: 65 },
+        { nombre: "Vino Tinto Reserva Casillero del Diablo 750ml", descripcion: "Vino chileno Cabernet Sauvignon", img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=400&fit=crop", precio: 45 }
+      ],
+      descuento: 13,
+      campana: "aniversario"
+    },
+    {
+      id: 3,
+      nombre: "Combo Verano Tropical",
+      descripcion: "Refréscate este verano con los mejores licores para cócteles y bebidas tropicales.",
+      img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=800&fit=crop",
+      productos: [
+        { nombre: "Ron Bacardi Limón 750ml", descripcion: "Ron con sabor a limón natural", img: "https://images.unsplash.com/photo-1609428035459-58d9d47f9d87?w=400&h=400&fit=crop", precio: 50 },
+        { nombre: "Ron Cartavio Superior 750ml", descripcion: "Ron peruano añejo de 5 años", img: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&h=400&fit=crop", precio: 42 },
+        { nombre: "Pisco Acholado Tabernero 750ml", descripcion: "Pisco acholado de uvas aromáticas", img: "https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b?w=400&h=400&fit=crop", precio: 48 },
+        { nombre: "Vodka Absolut 750ml", descripcion: "Vodka sueco de alta pureza", img: "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=400&fit=crop", precio: 55 }
+      ],
+      descuento: 15,
+      campana: "verano"
+    },
+    {
+      id: 4,
+      nombre: "Combo San Valentín Romántico",
+      descripcion: "Sorprende a tu pareja con este combo especial lleno de amor y buenos momentos.",
+      img: "https://images.unsplash.com/photo-1516997121675-4c2d1684aa7e?w=800&h=800&fit=crop",
+      productos: [
+        { nombre: "Champagne Moët & Chandon 750ml", descripcion: "Champagne francés de lujo", img: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&h=400&fit=crop", precio: 180 },
+        { nombre: "Vino Rosado Santa Rita 750ml", descripcion: "Vino rosado chileno semi-dulce", img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&h=400&fit=crop", precio: 35 },
+        { nombre: "Espumante Cinzano Asti 750ml", descripcion: "Espumante italiano dulce aromático", img: "https://images.unsplash.com/photo-1558346547-4439467bd1d5?w=400&h=400&fit=crop", precio: 38 }
+      ],
+      descuento: 13,
+      campana: "san-valentin"
+    }
+  ];
 
-    function mostrarProductos() {
-      contenedor.innerHTML = '';
-      productos.forEach(prod => {
-        contenedor.innerHTML += `
-          <div class="col-md-4 mb-4">
-            <div class="product-card">
-              <img src="${prod.img}" alt="${prod.nombre}">
-              <div class="product-info">
-                <h5>${prod.nombre}</h5>
-                <p>${prod.descripcion}</p>
-                <div class="price">S/ ${prod.precio.toFixed(2)}</div>
-                <button class="btn-carrito" onclick="agregarCarrito(${prod.id})">
-                  <i class="fas fa-cart-plus"></i> Agregar al carrito
-                </button>
-              </div>
+  const listaCombos = document.getElementById("listaCombos");
+  const botones = document.querySelectorAll(".filter-btn");
+
+  // --- AGREGAR PRODUCTO AL CARRITO ---
+  function agregarAlCarrito(producto) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    const existente = carrito.find(p => p.nombre === producto.nombre);
+    if (existente) {
+      existente.cantidad++;
+    } else {
+      producto.cantidad = 1;
+      carrito.push(producto);
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    // Actualiza contador en el ícono (si lo tienes)
+    const contador = document.getElementById("cart-count");
+    if (contador) contador.textContent = carrito.length;
+  }
+
+  // --- MOSTRAR COMBOS Y PRODUCTOS ---
+  function mostrarCombos(filtro) {
+    listaCombos.innerHTML = "";
+
+    const combosFiltrados = filtro === "todos"
+      ? combos
+      : combos.filter(c => c.campana === filtro);
+
+    if (combosFiltrados.length === 0) {
+      listaCombos.innerHTML = `<p class="text-center text-muted">No hay combos disponibles 😔</p>`;
+      return;
+    }
+
+    combosFiltrados.forEach(combo => {
+      const productosHTML = combo.productos.map(p => `
+        <div class="col-6 col-md-3">
+          <div class="producto-mini-card">
+            <img src="${p.img}" alt="${p.nombre}">
+            <div class="producto-mini-info">
+              <h6>${p.nombre}</h6>
+              <p>${p.descripcion}</p>
+              <span class="precio-mini">S/ ${p.precio}</span>
+              <button class="btn btn-sm btn-primary mt-2 agregar-btn" 
+                data-nombre="${p.nombre}" 
+                data-precio="${p.precio}" 
+                data-img="${p.img}">
+                <i class="fas fa-cart-plus"></i> Agregar
+              </button>
             </div>
-          </div>`;
+          </div>
+        </div>
+      `).join("");
+
+      const comboHTML = `
+        <div class="combo-card">
+          <div class="combo-card-inner">
+            <div class="combo-image-section">
+              <img src="${combo.img}" alt="${combo.nombre}">
+              <span class="combo-badge">-${combo.descuento}%</span>
+              <span class="campaign-tag tag-${combo.campana}">${combo.campana.toUpperCase()}</span>
+            </div>
+            <div class="combo-content-section">
+              <h3>${combo.nombre}</h3>
+              <p class="combo-description">${combo.descripcion}</p>
+              <div class="row">${productosHTML}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      listaCombos.insertAdjacentHTML("beforeend", comboHTML);
+    });
+
+    // Vincular eventos a los botones recién creados
+    document.querySelectorAll(".agregar-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const producto = {
+          nombre: btn.dataset.nombre,
+          precio: parseFloat(btn.dataset.precio),
+          img: btn.dataset.img
+        };
+        agregarAlCarrito(producto);
+        alert(`${producto.nombre} agregado al carrito 🛒`);
       });
-    }
+    });
+  }
 
-    function agregarCarrito(id) {
-      const producto = productos.find(p => p.id === id);
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito.push({ ...producto, cantidad: 1 });
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      actualizarContador();
-      alert(`✅ ${producto.nombre} agregado al carrito`);
-    }
+  // --- FILTRAR POR CAMPAÑA ---
+  window.filtrarCampana = function (campana) {
+    botones.forEach(btn => btn.classList.remove("active"));
+    document.querySelector(`[onclick="filtrarCampana('${campana}')"]`).classList.add("active");
+    mostrarCombos(campana);
+  };
 
-    function actualizarContador() {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      document.getElementById("contadorCarrito").textContent = carrito.length;
-    }
+  // Mostrar todos por defecto
+  mostrarCombos("todos");
+});
+</script>
 
-    mostrarProductos();
-    actualizarContador();
-  </script>
 </body>
+
 </html>

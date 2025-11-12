@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactanos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="styles.css">
+    <style>
+       
+        footer {
+            background: linear-gradient(135deg, #000000, #8B0000);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Estilos del contenido de contacto */
+        .contact-header {
+            background: linear-gradient(135deg, #000000, #8B0000);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .contact-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            color: var(--color-primary);
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 100%;
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139,0,0,0.2);
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            color: var(--color-dark);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .info-card p, .info-card a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .info-card a:hover {
+            color: var(--color-primary);
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #8B0000, #000000);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+            color: white;
+        }
+
+        .btn-action i {
+            margin-right: 8px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--color-dark);
+            transform: scale(1.1);
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-control:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 0.2rem rgba(139,0,0,0.25);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #8B0000, #000000);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            border-radius: 25px;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-container img {
+            max-width: 200px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+
+        .qr-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .qr-container img {
+            max-width: 200px;
+            border: 3px solid var(--color-primary);
+            border-radius: 10px;
+            padding: 10px;
+            background: white;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+            border-radius: 10px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .info-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-wine-bottle"></i> TAMBOS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+
+                    <!-- Dropdown Categorías -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorías
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
+                            <li><a class="dropdown-item" href="ron.html">Ron</a></li>
+                            <li><a class="dropdown-item" href="pisco.html">Pisco</a></li>
+                            <li><a class="dropdown-item" href="whisky.html">Whisky</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="promociones.html">Promociones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="combos.html">Combos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+
+                    <li class="nav-item">
+                        <div class="search-box d-none d-lg-block">
+                            <input type="text" class="form-control" placeholder="Buscar productos...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <div class="cart-icon">
+                            <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger"></span></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header de Contacto -->
+    <div class="contact-header">
+        <div class="container">
+            <h1><i class="fas fa-phone-alt"></i> Contáctanos</h1>
+            <p>Estamos aquí para atenderte. ¡Comunícate con nosotros!</p>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="container mb-5">
+        
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Licorería Tambos">
+        </div>
+
+        <!-- Tarjetas de Información -->
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="info-card text-center">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Dirección</h3>
+                    <p>Av. Mariscal Castilla 154 <br>Huanta, Ayacucho</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="info-card text-center">
+                    <i class="fas fa-phone"></i>
+                    <h3>Teléfono</h3>
+                    <p><a>+51 984 328 645</a></p>
+                    <p><a>(01) 666-6666</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="info-card text-center">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a>contacto@tambos.com</a></p>
+                    <p><a>ventas@tambos.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="text-center mb-5">
+            <h2 class="section-title">Recursos y Herramientas</h2>
+            <div class="d-flex flex-wrap justify-content-center">
+                <a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219" class="btn-action">
+                    <i class="fas fa-paper-plane"></i> Correo Masivo
+                </a>
+                <a href="https://heyzine.com/flip-book/011daf7652.html" class="btn-action" onclick="descargarCatalogo(); return false;">
+                    <i class="fas fa-book"></i> Catálogo Disponible
+                </a>
+                <a href="#" target="_blank" class="btn-action">
+                    <i class="fab fa-whatsapp"></i> Presentación
+                </a>
+            </div>
+        </div>
+
+        <!-- Código QR y Redes Sociales -->
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4">
+                <div class="info-card">
+                    <h3 class="text-center mb-4">Escanea Nuestro QR</h3>
+                    <div class="qr-container">
+                        <img src="img/qr.jpg" alt="QR Code">
+                        <p class="mt-3 text-center">Escanea para acceder a nuestra página web</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="info-card">
+                    <h3 class="text-center mb-4">Síguenos en Redes Sociales</h3>
+                    <div class="social-links text-center">
+                        <a href="https://facebook.com" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                    <div class="text-center mt-4">
+                        <p class="mb-2"><strong>Horario de Atención:</strong></p>
+                        <p>Lunes a Domingo<br>24 / 7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario y Mapa -->
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="form-container">
+                    <h2 class="section-title">Envíanos un Mensaje</h2>
+                    <div class="alert alert-success" id="mensajeExito">
+                        <i class="fas fa-check-circle"></i> ¡Tu mensaje ha sido enviado exitosamente! Te contactaremos pronto.
+                    </div>
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre Completo *</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono">
+                        </div>
+                        <div class="mb-3">
+                            <label for="asunto" class="form-label">Asunto *</label>
+                            <select class="form-control" id="asunto" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="consulta">Consulta General</option>
+                                <option value="pedido">Realizar Pedido</option>
+                                <option value="reclamo">Reclamo</option>
+                                <option value="sugerencia">Sugerencia</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label">Mensaje *</label>
+                            <textarea class="form-control" id="mensaje" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <h2 class="section-title">Encuéntranos</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.3027943654814!2d-77.04282668522385!3d-12.046373991460998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b5b4e6b0c7%3A0x7f4a5c0e6c0c0c0c!2sLima%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1620000000000!5m2!1ses!2spe" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="mt-3 text-center">
+                    <a href="https://www.google.com/maps/place/TAMBOS+VINOS+Y+LICORES/@-12.939419,-74.251364,1225m/data=!3m2!1e3!4b1!4m6!3m5!1s0x910d830832061ac1:0xc6023a01a0210ead!8m2!3d-12.939419!4d-74.2487891!16s%2Fg%2F11txhkxm4y?entry=ttu&g_ep=EgoyMDI1MTEwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-action">
+                        <i class="fas fa-map-marked-alt"></i> Ver en Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Licorería Tambos | Todos los derechos reservados.</p>
+        <p>Tomar Bebidas Alcoholicas en Exceso es Daniño</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulación de envío de formulario
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const asunto = document.getElementById('asunto').value;
+            const mensaje = document.getElementById('mensaje').value;
+            
+            // Validación básica
+            if (!nombre || !email || !asunto || !mensaje) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+            
+            // Simular envío (en producción aquí iría la llamada al servidor)
+            console.log('Datos del formulario:', {
+                nombre: nombre,
+                email: email,
+                telefono: telefono,
+                asunto: asunto,
+                mensaje: mensaje
+            });
+            
+            // Mostrar mensaje de éxito
+            document.getElementById('mensajeExito').style.display = 'block';
+            
+            // Limpiar formulario
+            this.reset();
+            
+            // Ocultar mensaje después de 5 segundos
+            setTimeout(function() {
+                document.getElementById('mensajeExito').style.display = 'none';
+            }, 5000);
+            
+            // Scroll suave al mensaje
+            document.getElementById('mensajeExito').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        
+        // Función para descargar catálogo
+        function descargarCatalogo() {
+            alert('¡Descargando catálogo! En producción, aquí se descargaría un PDF con todos nuestros productos.');
+            // En producción: window.location.href = 'catalogos/catalogo-tambos-2025.pdf';
+        }
+        
+        // Animación suave al hacer scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

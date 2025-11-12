@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 
-
   <style>
-   
+    :root {
+      --color-primary: #8B0000;
+  
+      --color-dark: #000000;
+      
+    }
+
     .cart-icon {
       position: relative;
       font-size: 1.5rem;
@@ -23,91 +29,236 @@
       transform: scale(1.1);
     }
 
-    .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: var(--color-accent);
-      color: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: bold;
+    /* Carrusel */
+    .carousel-item img {
+      height: 500px;
+      object-fit: cover;
     }
 
-  /* Footer general */
-footer {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-  color: var(--color-light);
-  padding: 40px 0;
-  margin-top: 50px;
-}
+    /* Sección de Categorías */
+    .categories-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
 
-footer h5 {
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--color-primary);
+      margin-bottom: 50px;
+      position: relative;
+      padding-bottom: 20px;
+    }
 
-footer p {
-  color: #eaeaea;
-  font-size: 0.95rem;
-}
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+    }
 
-footer a {
-  color: #f1f1f1;
-  text-decoration: none;
-  transition: color 0.3s;
-}
+    .category-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s;
+      position: relative;
+      height: 100%;
+    }
 
-footer a:hover {
-  color: var(--color-accent);
-}
+    .category-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 50px rgba(139, 0, 0, 0.3);
+    }
 
-/* Íconos redes */
-.social-icons i {
-  font-size: 1.3rem;
-  margin-right: 15px;
-  color: #fff;
-  transition: color 0.3s, transform 0.3s;
-  cursor: pointer;
-}
+    .category-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
 
-.social-icons i:hover {
-  color: var(--color-accent);
-  transform: scale(1.2);
-}
+    .category-card:hover img {
+      transform: scale(1.1);
+    }
 
-/* QR apartado */
-.qr-footer {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  border: 2px solid rgba(255,255,255,0.3);
-  margin-top: 10px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
+    .category-content {
+      padding: 25px;
+      text-align: center;
+    }
 
-.qr-footer:hover {
-  transform: scale(1.05);
-  border-color: var(--color-accent);
-}
+    .category-content h3 {
+      color: var(--color-dark);
+      font-weight: bold;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
 
-/* Línea inferior */
-.footer-bottom {
-  background-color: rgba(0,0,0,0.3);
-  text-align: center;
-  padding: 15px 0;
-  font-size: 0.9rem;
-  margin-top: 20px;
-}
+    .category-content p {
+      color: #666;
+      margin-bottom: 20px;
+    }
 
+    .btn-category {
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
 
+    .btn-category:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+      color: white;
+    }
+
+    /* Sección de Productos Destacados */
+    .featured-section {
+      padding: 60px 0;
+      background: white;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s;
+      height: 100%;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(139, 0, 0, 0.3);
+    }
+
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      height: 280px;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.15);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: var(--color-dark);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h5 {
+      color: var(--color-dark);
+      font-weight: bold;
+      margin-bottom: 10px;
+      min-height: 50px;
+    }
+
+    .product-info p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .product-price {
+      color: var(--color-secondary);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .btn-add-cart {
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      width: 100%;
+      transition: all 0.3s;
+    }
+
+    .btn-add-cart:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(139, 0, 0, 0.4);
+    }
+
+    /* Sección de Beneficios */
+    .benefits-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #000000, #8B0000);
+      color: white;
+    }
+
+    .benefit-card {
+      text-align: center;
+      padding: 30px;
+      transition: transform 0.3s;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .benefit-card i {
+      font-size: 3rem;
+      color: var(--color-gold);
+      margin-bottom: 20px;
+    }
+
+    .benefit-card h4 {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .benefit-card p {
+      opacity: 0.9;
+    }
+
+   
+
+    @media (max-width: 768px) {
+      .carousel-item img {
+        height: 300px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -125,7 +276,8 @@ footer a:hover {
 
           <!-- Dropdown Categorías -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Categorías
             </a>
             <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
@@ -148,9 +300,8 @@ footer a:hover {
           </li>
 
           <li class="nav-item ms-3">
-            <div class="cart-icon ">
-            
-               <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger"></span></a>
+            <div class="cart-icon">
+              <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger"></span></a>
             </div>
           </li>
         </ul>
@@ -158,85 +309,317 @@ footer a:hover {
     </div>
   </nav>
 
-   <!-- CARRUSEL -->
-  <div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/img/banner.jpg" class="d-block w-100" alt="...">
+  <!-- CARRUSEL -->
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
     </div>
-    <div class="carousel-item">
-      <img src="/img/banner2.jpg" class="d-block w-100" alt="...">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/img/banner.jpg" class="d-block w-100" alt="Banner 1">
+      </div>
+      <div class="carousel-item">
+        <img src="/img/banner2.jpg" class="d-block w-100" alt="Banner 2">
+      </div>
+      <div class="carousel-item">
+        <img src="/img/banner.jpg" class="d-block w-100" alt="Banner 3">
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="/img/banner.jpg" class="d-block w-100" alt="...">
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 
-<footer>
+  <!-- Sección de Categorías -->
+  <section class="categories-section">
+    <div class="container">
+      <h2 class="section-title">Explora Nuestras Categorías</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1609428035459-58d9d47f9d87?w=800&h=600&fit=crop" alt="Ron">
+            <div class="category-content">
+              <h3><i class="fas fa-glass-whiskey"></i> Ron</h3>
+              <p>Descubre nuestra selección de rones premium de las mejores marcas del mundo.</p>
+              <a href="ron.html" class="btn-category">Ver Productos</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b?w=800&h=600&fit=crop" alt="Pisco">
+            <div class="category-content">
+              <h3><i class="fas fa-wine-glass-alt"></i> Pisco</h3>
+              <p>El mejor pisco peruano y chileno para tus cócteles y celebraciones especiales.</p>
+              <a href="pisco.html" class="btn-category">Ver Productos</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&h=600&fit=crop" alt="Whisky">
+            <div class="category-content">
+              <h3><i class="fas fa-wine-bottle"></i> Whisky</h3>
+              <p>Whiskies escoceses, irlandeses y más. La mejor calidad para los conocedores.</p>
+              <a href="whisky.html" class="btn-category">Ver Productos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- 🥇 PRODUCTOS DESTACADOS -->
+<section class="productos-destacados py-5">
   <div class="container">
-    <div class="row text-center text-md-start">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold text-dark">✨ Productos Destacados</h2>
+      <a href="ron.html" class="ver-todo">Ver todo →</a>
+    </div>
 
-      <!-- 🏪 Apartado 1: Información -->
-      <div class="col-md-3 mb-4">
-        <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
-        <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con atención personalizada.</p>
-      </div>
+    <div id="carruselDestacados" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
 
-      <!-- 🔗 Apartado 2: Enlaces -->
-      <div class="col-md-3 mb-4">
-        <h5>Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="https://heyzine.com/flip-book/011daf7652.html">Catálogo disponible</a></li>
-          <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219">Correo masivo</a></li>
-          <li><a href="#">Presentación</a></li>
-          <li><a href="#">Nuevos ingresos</a></li>
-        </ul>
-      </div>
+        <!-- === SLIDE 1 === -->
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+            <!-- Producto 1 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2016/11/19/15/45/wine-1835440_1280.jpg" class="card-img-top" alt="Vino Tinto">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Vino Tinto Reserva</h6>
+                  <p class="detalle">750ml</p>
+                  <p class="precio">S/ 45.00</p>
+                </div>
+              </div>
+            </div>
 
-      <!-- 📞 Apartado 3: Contacto -->
-      <div class="col-md-3 mb-4">
-        <h5>Contáctanos</h5>
-        <p><i class="fas fa-map-marker-alt"></i> Av, Mariscal Catilla 154, Huanta - Ayacucho</p>
-        <p><i class="fas fa-phone"></i> +51 984 328 645</p>
-        <p><i class="fas fa-envelope"></i> contacto@licoreriatambos.pe</p>
-        <div class="social-icons mt-3">
-          <a href="https://www.facebook.com/licoreriatambos" target="_blank" aria-label="Facebook">
-    <i class="fab fa-facebook-f"></i>
-  </a>
-  <a href="https://www.instagram.com/licoreriatambos" target="_blank" aria-label="Instagram">
-    <i class="fab fa-instagram"></i>
-  </a>
-  <a href="https://wa.me/51999888777" target="_blank" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+            <!-- Producto 2 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2017/01/31/21/22/whiskey-2023566_1280.jpg" class="card-img-top" alt="Whisky Premium">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Whisky Premium</h6>
+                  <p class="detalle">700ml</p>
+                  <p class="precio">S/ 120.00</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2017/01/30/12/00/beer-2025454_1280.jpg" class="card-img-top" alt="Cerveza Artesanal">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Cerveza Artesanal</h6>
+                  <p class="detalle">500ml</p>
+                  <p class="precio">S/ 15.00</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2017/04/23/19/30/tequila-2254648_1280.jpg" class="card-img-top" alt="Tequila Silver">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Tequila Silver</h6>
+                  <p class="detalle">750ml</p>
+                  <p class="precio">S/ 89.00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- === SLIDE 2 === -->
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <!-- Producto 5 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2015/09/02/12/26/wine-918628_1280.jpg" class="card-img-top" alt="Vino Blanco">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Vino Blanco Dulce</h6>
+                  <p class="detalle">750ml</p>
+                  <p class="precio">S/ 38.00</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Producto 6 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2014/07/10/17/17/wine-389979_1280.jpg" class="card-img-top" alt="Vino Rosado">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Vino Rosado</h6>
+                  <p class="detalle">750ml</p>
+                  <p class="precio">S/ 42.00</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Producto 7 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2017/03/27/14/56/champagne-2178775_1280.jpg" class="card-img-top" alt="Champagne Brut">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Champagne Brut</h6>
+                  <p class="detalle">1L</p>
+                  <p class="precio">S/ 160.00</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Producto 8 -->
+            <div class="col-md-3 col-6 mb-4">
+              <div class="card producto-card">
+                <img src="https://cdn.pixabay.com/photo/2016/03/27/19/37/beer-1283566_1280.jpg" class="card-img-top" alt="Cerveza Negra">
+                <div class="card-body text-center">
+                  <h6 class="nombre">Cerveza Negra</h6>
+                  <p class="detalle">500ml</p>
+                  <p class="precio">S/ 12.00</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 🧾 Apartado 4: QR -->
-      <div class="col-md-3 mb-4 text-center">
-        <h5>Escanéanos</h5>
-        <p>Realiza tu pedido o paga rápido desde tu móvil.</p>
-        <img src="img/qr.jpg" alt="QR Tambos" class="qr-footer">
-      </div>
-
+      <!-- CONTROLES -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carruselDestacados" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carruselDestacados" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
     </div>
   </div>
+</section>
 
-  <div class="footer-bottom">
-    &copy; 2025 Licorería Tambos | Todos los derechos reservados.
+  <!-- Sección de Beneficios -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2 class="section-title" style="color: white;">¿Por Qué Elegir Tambos?</h2>
+      <div class="row">
+        <div class="col-md-3 col-6">
+          <div class="benefit-card">
+            <i class="fas fa-truck"></i>
+            <h4>Delivery Rápido</h4>
+            <p>Entrega en 24-48 horas</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="benefit-card">
+            <i class="fas fa-shield-alt"></i>
+            <h4>Compra Segura</h4>
+            <p>Pago 100% protegido</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="benefit-card">
+            <i class="fas fa-medal"></i>
+            <h4>Calidad Premium</h4>
+            <p>Solo productos originales</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="benefit-card">
+            <i class="fas fa-headset"></i>
+            <h4>Atención 24/7</h4>
+            <p>Soporte siempre disponible</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 🛵 SECCIÓN DELIVERY -->
+<section class="delivery-banner">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <div class="delivery-text text-center text-md-start">
+      <h2>¡DELIVERY <span>RÁPIDO</span> y <em>seguro!</em></h2>
+      <p>Recibe tus bebidas favoritas en la puerta de tu casa.<br>
+        ¡Haz tu pedido ahora!</p>
+    </div>
+
+    <div class="delivery-icons d-flex align-items-center justify-content-center">
+      <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" alt="Ubicación" class="icono">
+      <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" alt="Ubicación" class="icono">
+    </div>
+
+    <div class="delivery-image text-center">
+      <img src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png" alt="Moto delivery" class="moto">
+    </div>
   </div>
-</footer>
+</section>
 
+  <footer>
+    <div class="container">
+      <div class="row text-center text-md-start">
+
+        <!-- Apartado 1: Información -->
+        <div class="col-md-3 mb-4">
+          <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
+          <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con
+            atención personalizada.</p>
+        </div>
+
+        <!-- Apartado 2: Enlaces -->
+        <div class="col-md-3 mb-4">
+          <h5>Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="https://heyzine.com/flip-book/011daf7652.html"><i class="fas fa-book"></i> Catálogo disponible</a></li>
+            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219"><i class="fas fa-envelope"></i> Correo masivo</a></li>
+            <li><a href="#"><i class="fas fa-presentation"></i> Presentación</a></li>
+            <li><a href="#"><i class="fas fa-shield-alt"></i> Privacidad y Seguridad</a></li>
+          </ul>
+        </div>
+
+        <!-- Apartado 3: Contacto -->
+        <div class="col-md-3 mb-4">
+          <h5>Contáctanos</h5>
+          <p><i class="fas fa-map-marker-alt"></i> Av, Mariscal Catilla 154, Huanta - Ayacucho</p>
+          <p><i class="fas fa-phone"></i> +51 984 328 645</p>
+          <p><i class="fas fa-envelope"></i> contacto@licoreriatambos.pe</p>
+          <div class="social-icons mt-3">
+            <a href="https://www.facebook.com/licoreriatambos" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/licoreriatambos" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/51999888777" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Apartado 4: QR -->
+        <div class="col-md-3 mb-4 text-center">
+          <h5>Escanéanos</h5>
+          <p>Realiza tu pedido o paga rápido desde tu móvil.</p>
+          <img src="img/qr.jpg" alt="QR Tambos" class="qr-footer">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Licorería Tambos | Todos los derechos reservados.
+      <p>Tomar Bebidas Alcohólicas en Exceso es Dañino</p>
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
 </body>
+
 </html>

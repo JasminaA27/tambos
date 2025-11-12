@@ -1,261 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Licorería Tambos - Ron</title>
+  <title>Whiskys - Licorería Tambos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link rel="stylesheet" href="styles.css">
   <style>
-    :root {
-      --color-primary: #8B0000;
-      --color-secondary: #000000;
-      --color-accent: #C41E3A;
-      --color-light: #FFFFFF;
+    .sidebar {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      height: fit-content;
     }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: var(--color-secondary);
-    }
-
-  /* Navbar */
-    .navbar {
-      background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 1rem 0;
-    }
-
-    .navbar-brand {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--color-light) !important;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
-
-    .navbar-brand:hover {
-      transform: scale(1.05);
-    }
-
-    .nav-link {
-      color: var(--color-light) !important;
-      font-weight: 500;
-      margin: 0 0.5rem;
-      position: relative;
-      transition: all 0.3s;
-    }
-
-    .nav-link:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--color-accent);
-      transition: all 0.3s;
-      transform: translateX(-50%);
-    }
-
-    .nav-link:hover:after {
-      width: 80%;
-    }
-
-    .dropdown-menu {
-      background-color: var(--color-secondary);
-      border: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .dropdown-item {
-      color: var(--color-light);
-      transition: background 0.3s;
-    }
-
-    .dropdown-item:hover {
-      background-color: var(--color-accent);
-      color: #fff;
-    }
-
-    .search-box {
-      position: relative;
-      width: 300px;
-    }
-
-    .search-box input {
-      border-radius: 25px;
-      padding-right: 45px;
-      border: 2px solid var(--color-accent);
-    }
-
-    .search-box button {
-      position: absolute;
-      right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--color-accent);
-      border: none;
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      color: white;
-    }
-
-    .cart-icon {
-      position: relative;
-      font-size: 1.5rem;
-      color: var(--color-light);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .cart-icon:hover {
-      transform: scale(1.1);
-    }
-
-    .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: var(--color-accent);
-      color: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
+    .sidebar h5 {
+      color: #8B0000;
       font-weight: bold;
     }
 
-    /* Filtro */
-    .filter-section {
-      background: var(--color-light);
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-    }
-
-    /* Productos */
     .product-card {
       border: none;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+      background: #fff;
     }
 
     .product-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
     }
 
     .product-info {
       padding: 15px;
     }
 
-    .product-info h5 {
-      font-weight: bold;
-      color: var(--color-primary);
-    }
-
-    .btn-detalle, .btn-carrito {
-      border-radius: 25px;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-
-    .btn-detalle {
-      background-color: var(--color-accent);
-      color: white;
-    }
-
-    .btn-detalle:hover {
-      background-color: #a8001d;
-    }
-
     .btn-carrito {
-      background-color: var(--color-secondary);
+      background: #C41E3A;
       color: white;
+      border: none;
+      transition: 0.3s;
     }
 
     .btn-carrito:hover {
-      background-color: var(--color-primary);
-    }
-
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-      color: var(--color-light);
-      padding: 40px 0;
-      margin-top: 60px;
-    }
-
-    .footer-bottom {
-      background-color: rgba(0,0,0,0.3);
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9rem;
-    }
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-      color: var(--color-light);
-      padding: 40px 0;
-      margin-top: 50px;
-    }
-
-    footer h5 {
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    footer a {
-      color: #f1f1f1;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    footer a:hover {
-      color: var(--color-accent);
-    }
-
-    .social-icons i {
-      font-size: 1.3rem;
-      margin-right: 15px;
-      color: #fff;
-      transition: color 0.3s, transform 0.3s;
-      cursor: pointer;
-    }
-
-    .social-icons i:hover {
-      color: var(--color-accent);
-      transform: scale(1.2);
-    }
-
-    .footer-bottom {
-      background-color: rgba(0,0,0,0.3);
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9rem;
+      background: #8B0000;
     }
   </style>
 </head>
+
 <body>
 
- <!-- Navbar -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -270,7 +68,8 @@
 
           <!-- Dropdown Categorías -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Categorías
             </a>
             <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
@@ -280,10 +79,10 @@
             </ul>
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="#">Promociones</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Combos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="promociones.html">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="combos.html">Combos</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
 
           <li class="nav-item">
             <div class="search-box d-none d-lg-block">
@@ -293,110 +92,133 @@
           </li>
 
           <li class="nav-item ms-3">
-            <div class="cart-icon">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="cart-badge">0</span>
+            <div class="cart-icon ">
+              <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger">0</span></a>
             </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <div class="container mt-5">
+    <div class="row">
 
-
-  <!-- FILTRO -->
-  <div class="container mt-4">
-    <div class="filter-section">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <label class="form-label fw-bold">Filtrar por marca:</label>
-          <select id="marcaFiltro" class="form-select">
-            <option value="todos">Todos</option>
+      <!-- 🧭 Sidebar de filtro -->
+      <div class="col-md-3 mb-4">
+        <div class="sidebar">
+          <h5>Filtrar por marca</h5>
+          <select class="form-select mt-3" id="marcaFiltro">
+            <option value="todos">Todos los Whiskys</option>
             <option value="Bacardi">Bacardi</option>
             <option value="Cartavio">Cartavio</option>
             <option value="Flor de Caña">Flor de Caña</option>
           </select>
         </div>
       </div>
-    </div>
 
-    <!-- PRODUCTOS -->
-    <div class="row" id="listaProductos">
-      <!-- Productos cargados por JS -->
+      <!-- 🧾 Lista de productos -->
+      <div class="col-md-9">
+        <h2 class="text-center mb-4 text-dark">Whiskys disponibles</h2>
+        <div class="row" id="listaProductos"></div>
+      </div>
+
     </div>
   </div>
 
- <!-- Footer -->
   <footer>
     <div class="container">
       <div class="row text-center text-md-start">
-        <div class="col-md-4 mb-4">
+
+        <!-- 🏪 Apartado 1: Información -->
+        <div class="col-md-3 mb-4">
           <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
-          <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con atención personalizada.</p>
+          <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con
+            atención personalizada.</p>
         </div>
-        <div class="col-md-4 mb-4">
-          <h5>Categorías</h5>
+
+        <!-- 🔗 Apartado 2: Enlaces -->
+        <div class="col-md-3 mb-4">
+          <h5>Links</h5>
           <ul class="list-unstyled">
-            <li><a href="#">Ron</a></li>
-            <li><a href="#">Pisco</a></li>
-            <li><a href="#">Whisky</a></li>
-            <li><a href="#">Ofertas</a></li>
+            <li><a href="https://heyzine.com/flip-book/011daf7652.html">Catálogo disponible</a></li>
+            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219">Correo masivo</a>
+            </li>
+            <li><a href="#">Presentación</a></li>
+            <li><a href="#">Privacidad y Seguridad</a></li>
           </ul>
         </div>
-        <div class="col-md-4 mb-4">
+
+        <!-- 📞 Apartado 3: Contacto -->
+        <div class="col-md-3 mb-4">
           <h5>Contáctanos</h5>
-          <p><i class="fas fa-map-marker-alt"></i> Jr. Los Olivos 123, Huanta - Ayacucho</p>
-          <p><i class="fas fa-phone"></i> +51 999 888 777</p>
+          <p><i class="fas fa-map-marker-alt"></i> Av, Mariscal Catilla 154, Huanta - Ayacucho</p>
+          <p><i class="fas fa-phone"></i> +51 984 328 645</p>
           <p><i class="fas fa-envelope"></i> contacto@licoreriatambos.pe</p>
           <div class="social-icons mt-3">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-whatsapp"></i>
+            <a href="https://www.facebook.com/licoreriatambos" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/licoreriatambos" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/51999888777" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
           </div>
         </div>
+
+        <!-- 🧾 Apartado 4: QR -->
+        <div class="col-md-3 mb-4 text-center">
+          <h5>Escanéanos</h5>
+          <p>Realiza tu pedido o paga rápido desde tu móvil.</p>
+          <img src="img/qr.jpg" alt="QR Tambos" class="qr-footer">
+        </div>
+
       </div>
     </div>
+
     <div class="footer-bottom">
       &copy; 2025 Licorería Tambos | Todos los derechos reservados.
+      <p>Tomar Bebidas Alcoholicas en Exceso es Daniño</p>
     </div>
   </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     const productos = [
       { id: 1, nombre: "Ron Bacardi Blanco", marca: "Bacardi", img: "https://images.unsplash.com/photo-1609428035459-58d9d47f9d87", precioBase: 40 },
       { id: 2, nombre: "Ron Cartavio 5 años", marca: "Cartavio", img: "https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b", precioBase: 55 },
-      { id: 3, nombre: "Ron Flor de Caña 7 años", marca: "Flor de Caña", img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc", precioBase: 70 },
+      { id: 3, nombre: "Ron Flor de Caña 7 años", marca: "Flor de Caña", img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc", precioBase: 70 }
     ];
 
     const contenedor = document.getElementById('listaProductos');
+    const filtroMarca = document.getElementById('marcaFiltro');
 
     function mostrarProductos(filtro = 'todos') {
       contenedor.innerHTML = '';
       productos.filter(p => filtro === 'todos' || p.marca === filtro)
-      .forEach(prod => {
-        contenedor.innerHTML += `
+        .forEach(prod => {
+          contenedor.innerHTML += `
           <div class="col-md-4 mb-4">
-            <div class="card product-card">
-              <img src="${prod.img}" alt="${prod.nombre}">
+            <div class="product-card">
+              <img src="${prod.img}" class="card-img-top" style="height:250px;object-fit:cover;">
               <div class="product-info">
                 <h5>${prod.nombre}</h5>
                 <p><strong>Marca:</strong> ${prod.marca}</p>
                 <label class="form-label">Tamaño:</label>
-                <select class="form-select form-select-sm" onchange="actualizarPrecio(${prod.id}, this.value)">
+                <select class="form-select form-select-sm" id="ml-${prod.id}" onchange="actualizarPrecio(${prod.id}, this.value)">
                   <option value="300">300 ml - S/ ${(prod.precioBase * 0.5).toFixed(2)}</option>
-                  <option value="750" selected>750 ml - S/ ${(prod.precioBase).toFixed(2)}</option>
+                  <option value="750" selected>750 ml - S/ ${prod.precioBase.toFixed(2)}</option>
                   <option value="1000">1 L - S/ ${(prod.precioBase * 1.3).toFixed(2)}</option>
                 </select>
                 <p id="precio-${prod.id}" class="mt-2 fw-bold text-danger">Precio: S/ ${prod.precioBase.toFixed(2)}</p>
-                <div class="d-flex justify-content-between">
-                 
-                  <button class="btn btn-carrito" onclick="agregarCarrito(${prod.id})"><i class="fas fa-cart-plus"></i> Agregar</button>
-                </div>
+                <button class="btn btn-carrito w-100 mt-2" onclick="agregarCarrito(${prod.id})">
+                  <i class="fas fa-cart-plus"></i> Agregar al carrito
+                </button>
               </div>
             </div>
           </div>`;
-      });
+        });
     }
 
     function actualizarPrecio(id, ml) {
@@ -407,22 +229,30 @@
       document.getElementById(`precio-${id}`).textContent = `Precio: S/ ${nuevoPrecio.toFixed(2)}`;
     }
 
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
     function agregarCarrito(id) {
       const producto = productos.find(p => p.id === id);
-      carrito.push(producto);
+      const ml = document.getElementById(`ml-${id}`).value;
+      let precio = producto.precioBase;
+      if (ml == 300) precio *= 0.5;
+      if (ml == 1000) precio *= 1.3;
+
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.push({ ...producto, ml, precio, cantidad: 1 });
       localStorage.setItem("carrito", JSON.stringify(carrito));
-      alert(`✅ ${producto.nombre} agregado al carrito`);
+
+      actualizarContador();
+      alert(`✅ ${producto.nombre} (${ml} ml) agregado al carrito`);
     }
 
-    document.getElementById('marcaFiltro').addEventListener('change', e => {
-      mostrarProductos(e.target.value);
-    });
+    function actualizarContador() {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      document.getElementById("contadorCarrito").textContent = carrito.length;
+    }
 
+    filtroMarca.addEventListener('change', e => mostrarProductos(e.target.value));
     mostrarProductos();
+    actualizarContador();
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

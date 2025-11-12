@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,52 +9,100 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; }
-    .navbar { background: linear-gradient(135deg, #000000, #8B0000); }
-    .navbar-brand, .nav-link { color: #fff !important; }
     .sidebar {
       background: #fff;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
       height: fit-content;
     }
-    .sidebar h5 { color: #8B0000; font-weight: bold; }
+
+    .sidebar h5 {
+      color: #8B0000;
+      font-weight: bold;
+    }
+
     .product-card {
       border: none;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: 0.3s;
       background: #fff;
     }
-    .product-card:hover { transform: translateY(-5px); }
-    .product-info { padding: 15px; }
-    .btn-carrito { background: #C41E3A; color: white; border: none; transition: 0.3s; }
-    .btn-carrito:hover { background: #8B0000; }
-    footer {
-      background: linear-gradient(135deg, #000000, #8B0000);
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .btn-carrito {
+      background: #C41E3A;
       color: white;
-      padding: 30px 0;
-      text-align: center;
-      margin-top: 60px;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-carrito:hover {
+      background: #8B0000;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- 🔝 Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html"><i class="fas fa-wine-bottle"></i> TAMBOS</a>
-      <div class="ms-auto">
-        <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger">0</span></a>
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-wine-bottle"></i> TAMBOS
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+
+          <!-- Dropdown Categorías -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
+              <li><a class="dropdown-item" href="ron.html">Ron</a></li>
+              <li><a class="dropdown-item" href="pisco.html">Pisco</a></li>
+              <li><a class="dropdown-item" href="whisky.html">Whisky</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="promociones.html">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="combos.html">Combos</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+
+          <li class="nav-item">
+            <div class="search-box d-none d-lg-block">
+              <input type="text" class="form-control" placeholder="Buscar productos...">
+              <button><i class="fas fa-search"></i></button>
+            </div>
+          </li>
+
+          <li class="nav-item ms-3">
+            <div class="cart-icon ">
+              <a class="nav-link" href="carrito.html">🛒 <span id="contadorCarrito" class="badge bg-danger">0</span></a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
-
   <div class="container mt-5">
     <div class="row">
-      
+
       <!-- 🧭 Sidebar de filtro -->
       <div class="col-md-3 mb-4">
         <div class="sidebar">
@@ -77,8 +126,63 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Licorería Tambos | Todos los derechos reservados.</p>
+    <div class="container">
+      <div class="row text-center text-md-start">
+
+        <!-- 🏪 Apartado 1: Información -->
+        <div class="col-md-3 mb-4">
+          <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
+          <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con
+            atención personalizada.</p>
+        </div>
+
+        <!-- 🔗 Apartado 2: Enlaces -->
+        <div class="col-md-3 mb-4">
+          <h5>Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="https://heyzine.com/flip-book/011daf7652.html">Catálogo disponible</a></li>
+            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219">Correo masivo</a>
+            </li>
+            <li><a href="#">Presentación</a></li>
+            <li><a href="#">Privacidad y Seguridad</a></li>
+          </ul>
+        </div>
+
+        <!-- 📞 Apartado 3: Contacto -->
+        <div class="col-md-3 mb-4">
+          <h5>Contáctanos</h5>
+          <p><i class="fas fa-map-marker-alt"></i> Av, Mariscal Catilla 154, Huanta - Ayacucho</p>
+          <p><i class="fas fa-phone"></i> +51 984 328 645</p>
+          <p><i class="fas fa-envelope"></i> contacto@licoreriatambos.pe</p>
+          <div class="social-icons mt-3">
+            <a href="https://www.facebook.com/licoreriatambos" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/licoreriatambos" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/51999888777" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 🧾 Apartado 4: QR -->
+        <div class="col-md-3 mb-4 text-center">
+          <h5>Escanéanos</h5>
+          <p>Realiza tu pedido o paga rápido desde tu móvil.</p>
+          <img src="img/qr.jpg" alt="QR Tambos" class="qr-footer">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Licorería Tambos | Todos los derechos reservados.
+      <p>Tomar Bebidas Alcoholicas en Exceso es Daniño</p>
+    </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     const productos = [
@@ -93,8 +197,8 @@
     function mostrarProductos(filtro = 'todos') {
       contenedor.innerHTML = '';
       productos.filter(p => filtro === 'todos' || p.marca === filtro)
-      .forEach(prod => {
-        contenedor.innerHTML += `
+        .forEach(prod => {
+          contenedor.innerHTML += `
           <div class="col-md-4 mb-4">
             <div class="product-card">
               <img src="${prod.img}" class="card-img-top" style="height:250px;object-fit:cover;">
@@ -114,7 +218,7 @@
               </div>
             </div>
           </div>`;
-      });
+        });
     }
 
     function actualizarPrecio(id, ml) {
@@ -150,4 +254,5 @@
     actualizarContador();
   </script>
 </body>
+
 </html>
