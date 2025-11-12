@@ -8,12 +8,159 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  
+ 
+  <style>
+    :root {
+      --color-primary: #8B1538;
+      --color-dark: #1a1a1a;
+      --color-light: #ffffff;
+      --color-gray: #f8f9fa;
+      --color-accent: #c41e3a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--color-light);
+      color: var(--color-dark);
+    }
+
+
+
+    /* Hero Section */
+    .combos-hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      padding: 80px 0;
+      color: var(--color-light);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .combos-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    /* Combo Cards */
+    .combo-card {
+      background: var(--color-light);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 1px solid #f0f0f0;
+    }
+
+    .combo-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .combo-card-inner {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+    }
+
+    @media (max-width: 992px) {
+      .combo-card-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .combo-image-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .combo-card:hover .combo-image-section img {
+      transform: scale(1.1);
+    }
+
+    .combo-content-section {
+      padding: 40px;
+    }
+
+    .combo-content-section h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    /* Product Mini Cards */
+    .producto-mini-card {
+      background: var(--color-gray);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .producto-mini-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .producto-mini-card img {
+      width: 100%;
+      height: 220px; /* agrandadas */
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .producto-mini-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .producto-mini-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .producto-mini-info h6 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+      min-height: 40px;
+    }
+
+    .producto-mini-info p {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .precio-mini {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
+    <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -26,6 +173,7 @@
         <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
 
+          <!-- Dropdown Categorías -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -73,19 +221,19 @@
   <div class="container">
     <div class="campaign-filters">
       <button class="filter-btn active" onclick="filtrarCampana('todos')">
-        <i class="fas fa-layer-group"></i> Todos los Combos
+        <i class="fas fa-layer-group"></i> Todos
+      </button>
+      <button class="filter-btn" onclick="filtrarCampana('libres')">
+        <i class="fas fa-cocktail"></i> Libres
       </button>
       <button class="filter-btn" onclick="filtrarCampana('navidad')">
         <i class="fas fa-tree"></i> Navidad
       </button>
-      <button class="filter-btn" onclick="filtrarCampana('aniversario')">
-        <i class="fas fa-birthday-cake"></i> Aniversario
+      <button class="filter-btn" onclick="filtrarCampana('carnavales')">
+        <i class="fas fa-mask"></i> Carnavales
       </button>
-      <button class="filter-btn" onclick="filtrarCampana('verano')">
-        <i class="fas fa-sun"></i> Verano
-      </button>
-      <button class="filter-btn" onclick="filtrarCampana('san-valentin')">
-        <i class="fas fa-heart"></i> San Valentín
+      <button class="filter-btn" onclick="filtrarCampana('otros')">
+        <i class="fas fa-gift"></i> Otros
       </button>
     </div>
 
@@ -142,7 +290,7 @@
 
     <div class="footer-bottom">
       &copy; 2025 Licorería Tambos | Todos los derechos reservados.
-      <p>Tomar Bebidas Alcoholicas en Exceso es Daniño</p>
+      <p>Tomar Bebidas Alcoholicas en Exceso es Dañino</p>
     </div>
   </footer>
 
@@ -168,43 +316,64 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: 2,
-      nombre: "Combo Aniversario Premium",
-      descripcion: "Celebra momentos especiales con esta selección exclusiva de bebidas de alta gama.",
-      img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=800&fit=crop",
+      nombre: "Combo Libre Clásico",
+      descripcion: "El combo perfecto para tus reuniones informales. Licores versátiles que se adaptan a cualquier ocasión.",
+      img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=800&fit=crop",
       productos: [
-        { nombre: "Whisky Johnnie Walker Black Label 750ml", descripcion: "Whisky escocés de 12 años", img: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=400&h=400&fit=crop", precio: 120 },
-        { nombre: "Pisco Quebranta Premium 750ml", descripcion: "Pisco puro quebranta artesanal", img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=400&fit=crop", precio: 65 },
-        { nombre: "Vino Tinto Reserva Casillero del Diablo 750ml", descripcion: "Vino chileno Cabernet Sauvignon", img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=400&fit=crop", precio: 45 }
+        { 
+      nombre: "Combo 1 - Ron Cartavio", 
+      descripcion: "Ron cartavio gaseosa + CocaCola + Hielo", 
+      img: "img/combo1.jpeg", 
+      precio: 42 
+    },
+    { 
+      nombre: "Pisco Acholado Tabernero 750ml", 
+      descripcion: "Pisco acholado de uvas aromáticas", 
+      img: "img/combo2.jpeg", 
+      precio: 48 
+    },
+    { 
+      nombre: "Vodka Absolut 750ml", 
+      descripcion: "Vodka sueco de alta pureza", 
+      img: "img/combo3.jpeg", 
+      precio: 55 
+    },
+     { 
+      nombre: "Vodka Absolut 750ml", 
+      descripcion: "Vodka sueco de alta pureza", 
+      img: "img/combo1.jpeg", 
+      precio: 55 
+    }
       ],
-      descuento: 13,
-      campana: "aniversario"
+      descuento: 18,
+      campana: "libres"
     },
     {
       id: 3,
-      nombre: "Combo Verano Tropical",
-      descripcion: "Refréscate este verano con los mejores licores para cócteles y bebidas tropicales.",
-      img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=800&fit=crop",
+      nombre: "Combo Carnaval Fiestero",
+      descripcion: "¡A celebrar se ha dicho! Pack especial para disfrutar los carnavales con toda la energía y sabor.",
+      img: "https://images.unsplash.com/photo-1516997121675-4c2d1684aa7e?w=800&h=800&fit=crop",
       productos: [
         { nombre: "Ron Bacardi Limón 750ml", descripcion: "Ron con sabor a limón natural", img: "https://images.unsplash.com/photo-1609428035459-58d9d47f9d87?w=400&h=400&fit=crop", precio: 50 },
-        { nombre: "Ron Cartavio Superior 750ml", descripcion: "Ron peruano añejo de 5 años", img: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&h=400&fit=crop", precio: 42 },
-        { nombre: "Pisco Acholado Tabernero 750ml", descripcion: "Pisco acholado de uvas aromáticas", img: "https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b?w=400&h=400&fit=crop", precio: 48 },
-        { nombre: "Vodka Absolut 750ml", descripcion: "Vodka sueco de alta pureza", img: "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=400&fit=crop", precio: 55 }
+        { nombre: "Cerveza Artesanal Pack x6", descripcion: "Cervezas artesanales variadas", img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&h=400&fit=crop", precio: 35 },
+        { nombre: "Tequila José Cuervo 750ml", descripcion: "Tequila mexicano auténtico", img: "https://images.unsplash.com/photo-1596285988341-c972fc6e6cdb?w=400&h=400&fit=crop", precio: 60 },
+        { nombre: "Sangría Lolea 750ml", descripcion: "Sangría española premium", img: "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=400&fit=crop", precio: 38 }
       ],
-      descuento: 15,
-      campana: "verano"
+      descuento: 20,
+      campana: "carnavales"
     },
     {
       id: 4,
-      nombre: "Combo San Valentín Romántico",
-      descripcion: "Sorprende a tu pareja con este combo especial lleno de amor y buenos momentos.",
-      img: "https://images.unsplash.com/photo-1516997121675-4c2d1684aa7e?w=800&h=800&fit=crop",
+      nombre: "Combo Premium Aniversario",
+      descripcion: "Celebra momentos especiales con esta selección exclusiva de bebidas de alta gama para ocasiones memorables.",
+      img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=800&fit=crop",
       productos: [
+        { nombre: "Whisky Johnnie Walker Black Label 750ml", descripcion: "Whisky escocés de 12 años", img: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=400&h=400&fit=crop", precio: 120 },
         { nombre: "Champagne Moët & Chandon 750ml", descripcion: "Champagne francés de lujo", img: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&h=400&fit=crop", precio: 180 },
-        { nombre: "Vino Rosado Santa Rita 750ml", descripcion: "Vino rosado chileno semi-dulce", img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&h=400&fit=crop", precio: 35 },
-        { nombre: "Espumante Cinzano Asti 750ml", descripcion: "Espumante italiano dulce aromático", img: "https://images.unsplash.com/photo-1558346547-4439467bd1d5?w=400&h=400&fit=crop", precio: 38 }
+        { nombre: "Pisco Quebranta Premium 750ml", descripcion: "Pisco puro quebranta artesanal", img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=400&fit=crop", precio: 65 }
       ],
-      descuento: 13,
-      campana: "san-valentin"
+      descuento: 15,
+      campana: "otros"
     }
   ];
 
@@ -226,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     // Actualiza contador en el ícono (si lo tienes)
-    const contador = document.getElementById("cart-count");
+    const contador = document.getElementById("contadorCarrito");
     if (contador) contador.textContent = carrito.length;
   }
 
@@ -239,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
       : combos.filter(c => c.campana === filtro);
 
     if (combosFiltrados.length === 0) {
-      listaCombos.innerHTML = `<p class="text-center text-muted">No hay combos disponibles 😔</p>`;
+      listaCombos.innerHTML = `<p class="text-center text-muted">No hay combos disponibles para esta categoría 😔</p>`;
       return;
     }
 
@@ -252,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <h6>${p.nombre}</h6>
               <p>${p.descripcion}</p>
               <span class="precio-mini">S/ ${p.precio}</span>
-              <button class="btn btn-sm btn-primary mt-2 agregar-btn" 
+              <button class="btn btn-sm agregar-btn" 
                 data-nombre="${p.nombre}" 
                 data-precio="${p.precio}" 
                 data-img="${p.img}">
@@ -274,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="combo-content-section">
               <h3>${combo.nombre}</h3>
               <p class="combo-description">${combo.descripcion}</p>
-              <div class="row">${productosHTML}</div>
+              <div class="row g-3">${productosHTML}</div>
             </div>
           </div>
         </div>
@@ -291,7 +460,15 @@ document.addEventListener("DOMContentLoaded", () => {
           img: btn.dataset.img
         };
         agregarAlCarrito(producto);
-        alert(`${producto.nombre} agregado al carrito 🛒`);
+        
+        // Efecto visual en el botón
+        btn.innerHTML = '<i class="fas fa-check"></i> Agregado';
+        btn.style.background = '#28a745';
+        
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar';
+          btn.style.background = '';
+        }, 2000);
       });
     });
   }
