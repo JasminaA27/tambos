@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .sidebar {
+     .sidebar {
       background: #fff;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -28,14 +28,27 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: 0.3s;
       background: #fff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .product-card:hover {
       transform: translateY(-5px);
     }
 
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      padding: 10px;
+      background-color: #fff;
+    }
+
     .product-info {
       padding: 15px;
+      flex-grow: 1;
     }
 
     .btn-carrito {
@@ -100,6 +113,7 @@
       </div>
     </div>
   </nav>
+
   <div class="container mt-5">
     <div class="row">
 
@@ -128,60 +142,46 @@
   <footer>
     <div class="container">
       <div class="row text-center text-md-start">
-
-        <!-- 🏪 Apartado 1: Información -->
         <div class="col-md-3 mb-4">
           <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
-          <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con
-            atención personalizada.</p>
+          <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con atención personalizada.</p>
         </div>
 
-        <!-- 🔗 Apartado 2: Enlaces -->
         <div class="col-md-3 mb-4">
           <h5>Links</h5>
           <ul class="list-unstyled">
             <li><a href="https://heyzine.com/flip-book/011daf7652.html">Catálogo disponible</a></li>
-            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219">Correo masivo</a>
-            </li>
+            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219">Correo masivo</a></li>
             <li><a href="#">Presentación</a></li>
             <li><a href="#">Privacidad y Seguridad</a></li>
           </ul>
         </div>
 
-        <!-- 📞 Apartado 3: Contacto -->
         <div class="col-md-3 mb-4">
           <h5>Contáctanos</h5>
-          <p><i class="fas fa-map-marker-alt"></i> Av, Mariscal Catilla 154, Huanta - Ayacucho</p>
+          <p><i class="fas fa-map-marker-alt"></i> Av. Mariscal Castilla 154, Huanta - Ayacucho</p>
           <p><i class="fas fa-phone"></i> +51 984 328 645</p>
           <p><i class="fas fa-envelope"></i> contacto@licoreriatambos.pe</p>
           <div class="social-icons mt-3">
-            <a href="https://www.facebook.com/licoreriatambos" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/licoreriatambos" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/51999888777" target="_blank" aria-label="WhatsApp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
+            <a href="https://www.facebook.com/licoreriatambos" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/licoreriatambos" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/51999888777" target="_blank"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
 
-        <!-- 🧾 Apartado 4: QR -->
         <div class="col-md-3 mb-4 text-center">
           <h5>Escanéanos</h5>
           <p>Realiza tu pedido o paga rápido desde tu móvil.</p>
           <img src="img/qr.jpg" alt="QR Tambos" class="qr-footer">
         </div>
-
       </div>
     </div>
-
     <div class="footer-bottom">
       &copy; 2025 Licorería Tambos | Todos los derechos reservados.
-      <p>Tomar Bebidas Alcoholicas en Exceso es Daniño</p>
+      <p>Tomar bebidas alcohólicas en exceso es dañino.</p>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
@@ -209,19 +209,21 @@
       productos.filter(p => filtro === 'todos' || p.marca === filtro)
         .forEach(prod => {
           contenedor.innerHTML += `
-          <div class="col-md-4 mb-4">
-            <div class="product-card">
-              <img src="${prod.img}" class="card-img-top" style="height:250px;object-fit:cover;">
+          <div class="col-md-4 mb-4 d-flex">
+            <div class="product-card w-100">
+              <img src="${prod.img}" alt="${prod.nombre}">
               <div class="product-info">
-                <h5>${prod.nombre}</h5>
-                <p><strong>Marca:</strong> ${prod.marca}</p>
-                <label class="form-label">Tamaño:</label>
-                <select class="form-select form-select-sm" id="ml-${prod.id}" onchange="actualizarPrecio(${prod.id}, this.value)">
-                  <option value="300">300 ml - S/ ${(prod.precioBase * 0.5).toFixed(2)}</option>
-                  <option value="750" selected>750 ml - S/ ${prod.precioBase.toFixed(2)}</option>
-                  <option value="1000">1 L - S/ ${(prod.precioBase * 1.3).toFixed(2)}</option>
-                </select>
-                <p id="precio-${prod.id}" class="mt-2 fw-bold text-danger">Precio: S/ ${prod.precioBase.toFixed(2)}</p>
+                <div>
+                  <h5>${prod.nombre}</h5>
+                  <p><strong>Marca:</strong> ${prod.marca}</p>
+                  <label class="form-label">Tamaño:</label>
+                  <select class="form-select form-select-sm" id="ml-${prod.id}" onchange="actualizarPrecio(${prod.id}, this.value)">
+                    <option value="300">300 ml - S/ ${(prod.precioBase * 0.5).toFixed(2)}</option>
+                    <option value="750" selected>750 ml - S/ ${prod.precioBase.toFixed(2)}</option>
+                    <option value="1000">1 L - S/ ${(prod.precioBase * 1.3).toFixed(2)}</option>
+                  </select>
+                  <p id="precio-${prod.id}" class="mt-2 fw-bold text-danger">Precio: S/ ${prod.precioBase.toFixed(2)}</p>
+                </div>
                 <button class="btn btn-carrito w-100 mt-2" onclick="agregarCarrito(${prod.id})">
                   <i class="fas fa-cart-plus"></i> Agregar al carrito
                 </button>
@@ -264,5 +266,4 @@
     actualizarContador();
   </script>
 </body>
-
 </html>

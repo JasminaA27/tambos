@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .sidebar {
+     .sidebar {
       background: #fff;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -28,14 +28,27 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: 0.3s;
       background: #fff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .product-card:hover {
       transform: translateY(-5px);
     }
 
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      padding: 10px;
+      background-color: #fff;
+    }
+
     .product-info {
       padding: 15px;
+      flex-grow: 1;
     }
 
     .btn-carrito {
@@ -100,6 +113,7 @@
       </div>
     </div>
   </nav>
+
   <div class="container mt-5">
     <div class="row">
 
@@ -109,9 +123,9 @@
           <h5>Filtrar por marca</h5>
           <select class="form-select mt-3" id="marcaFiltro">
             <option value="todos">Todos los Whiskys</option>
-            <option value="Bacardi">Bacardi</option>
-            <option value="Cartavio">Cartavio</option>
-            <option value="Flor de Caña">Flor de Caña</option>
+            <option value="Jack Daniels">Jack Daniels</option>
+            <option value="Johnnie Walker">Johnnie Walker</option>
+            <option value="Buchanans">Buchanans</option>
           </select>
         </div>
       </div>
@@ -128,67 +142,66 @@
   <footer>
     <div class="container">
       <div class="row text-center text-md-start">
-
-        <!-- 🏪 Apartado 1: Información -->
         <div class="col-md-3 mb-4">
           <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
           <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con
             atención personalizada.</p>
         </div>
-
-        <!-- 🔗 Apartado 2: Enlaces -->
         <div class="col-md-3 mb-4">
           <h5>Links</h5>
           <ul class="list-unstyled">
             <li><a href="https://heyzine.com/flip-book/011daf7652.html">Catálogo disponible</a></li>
-            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219">Correo masivo</a>
-            </li>
+            <li><a href="https://dashboard.mailerlite.com/preview/1856801/emails/169069249404339219">Correo masivo</a></li>
             <li><a href="#">Presentación</a></li>
             <li><a href="#">Privacidad y Seguridad</a></li>
           </ul>
         </div>
-
-        <!-- 📞 Apartado 3: Contacto -->
         <div class="col-md-3 mb-4">
           <h5>Contáctanos</h5>
           <p><i class="fas fa-map-marker-alt"></i> Av, Mariscal Catilla 154, Huanta - Ayacucho</p>
           <p><i class="fas fa-phone"></i> +51 984 328 645</p>
           <p><i class="fas fa-envelope"></i> contacto@licoreriatambos.pe</p>
           <div class="social-icons mt-3">
-            <a href="https://www.facebook.com/licoreriatambos" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/licoreriatambos" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/51999888777" target="_blank" aria-label="WhatsApp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
+            <a href="https://www.facebook.com/licoreriatambos" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/licoreriatambos" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/51999888777" target="_blank"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
-
-        <!-- 🧾 Apartado 4: QR -->
         <div class="col-md-3 mb-4 text-center">
           <h5>Escanéanos</h5>
           <p>Realiza tu pedido o paga rápido desde tu móvil.</p>
           <img src="img/qr.jpg" alt="QR Tambos" class="qr-footer">
         </div>
-
       </div>
     </div>
-
     <div class="footer-bottom">
       &copy; 2025 Licorería Tambos | Todos los derechos reservados.
-      <p>Tomar Bebidas Alcoholicas en Exceso es Daniño</p>
+      <p>Tomar Bebidas Alcoholicas en Exceso es Dañino</p>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     const productos = [
-      { id: 1, nombre: "Ron Bacardi Blanco", marca: "Bacardi", img: "https://images.unsplash.com/photo-1609428035459-58d9d47f9d87", precioBase: 40 },
-      { id: 2, nombre: "Ron Cartavio 5 años", marca: "Cartavio", img: "https://images.unsplash.com/photo-1617131206637-cd5d8eebdd6b", precioBase: 55 },
-      { id: 3, nombre: "Ron Flor de Caña 7 años", marca: "Flor de Caña", img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc", precioBase: 70 }
+      { id: 1, nombre: "JACK DANIEL’S HONEY X", marca: "Jack Daniels", img: "https://almendariz.com.pe/wp-content/uploads/2021/12/015018012-2.jpg", precioBase: 89 },
+      { id: 2, nombre: "JACK DANIEL’S N°7", marca: "Jack Daniels", img: "https://almendariz.com.pe/wp-content/uploads/2021/12/015018001-2.jpg", precioBase: 89 },
+      { id: 3, nombre: "JACK DANIELS APPLE X", marca: "Jack Daniels", img: "https://almendariz.com.pe/wp-content/uploads/2023/08/015018023.jpg", precioBase: 89 },
+      { id: 4, nombre: "JACK DANIELS FIRE X", marca: "Jack Daniels", img: "https://almendariz.com.pe/wp-content/uploads/2022/11/015018022.jpg", precioBase: 150 },
+      { id: 5, nombre: "JACK DANIEL’S GENTLEMAN JACK X", marca: "Jack Daniels", img: "https://almendariz.com.pe/wp-content/uploads/2021/12/015019001-2.jpg", precioBase: 156 },
+      { id: 6, nombre: "JACK DANIEL’S SINGLE BARRELS X", marca: "Jack Daniels", img: "https://almendariz.com.pe/wp-content/uploads/2021/12/015018008-1.jpg", precioBase: 273 },
+      { id: 7, nombre: "JOHNNIE WALKER 18 AÑOS", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2022/08/015017088.jpg", precioBase: 489 },
+      { id: 8, nombre: "JOHNNIE WALKER GREEN LABEL", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2021/12/015017014-2.jpg", precioBase: 276 },
+      { id: 9, nombre: "JOHNNIE WALKER KING GEORGE VX", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2021/12/015017051-2.jpg", precioBase: 2620 },
+      { id: 10, nombre: "BLACK LABEL", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2022/08/015017004-1.jpg", precioBase: 114 },
+      { id: 11, nombre: "BLONDE", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2024/09/015017134.jpg", precioBase: 77 },
+      { id: 12, nombre: "BLUE LABEL", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2022/08/015017001.jpg", precioBase: 1260 },
+      { id: 13, nombre: "DOUBLE BLACK", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2022/08/015017038-1.jpg", precioBase: 145 },
+      { id: 14, nombre: "OLD RESERVE X", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2022/08/015017049.jpg", precioBase: 214 },
+      { id: 15, nombre: "RED LABEL", marca: "Johnnie Walker", img: "https://almendariz.com.pe/wp-content/uploads/2022/08/015017015-1.jpg", precioBase: 54 },
+      { id: 16, nombre: "BUCHANANS 12 AÑOS X", marca: "Buchanans", img: "https://almendariz.com.pe/wp-content/uploads/2022/08/015004001.jpg", precioBase: 104 },
+      { id: 17, nombre: "BUCHANANS 18 AÑOS X", marca: "Buchanans", img: "https://almendariz.com.pe/wp-content/uploads/2024/04/015004002.jpg", precioBase: 259 },
+      { id: 18, nombre: "BUCHANANS RED SEAL X", marca: "Buchanans", img: "https://almendariz.com.pe/wp-content/uploads/2024/02/015004005.jpg", precioBase: 627 }
     ];
 
     const contenedor = document.getElementById('listaProductos');
@@ -196,12 +209,13 @@
 
     function mostrarProductos(filtro = 'todos') {
       contenedor.innerHTML = '';
-      productos.filter(p => filtro === 'todos' || p.marca === filtro)
+      productos
+        .filter(p => filtro === 'todos' || p.marca === filtro)
         .forEach(prod => {
           contenedor.innerHTML += `
-          <div class="col-md-4 mb-4">
-            <div class="product-card">
-              <img src="${prod.img}" class="card-img-top" style="height:250px;object-fit:cover;">
+          <div class="col-md-4 mb-4 d-flex">
+            <div class="product-card w-100">
+              <img src="${prod.img}" alt="${prod.nombre}">
               <div class="product-info">
                 <h5>${prod.nombre}</h5>
                 <p><strong>Marca:</strong> ${prod.marca}</p>
@@ -254,5 +268,4 @@
     actualizarContador();
   </script>
 </body>
-
 </html>
