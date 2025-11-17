@@ -59,7 +59,1120 @@
         </ul>
       </div>
     </div>
+    
   </nav>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licorería Tambos - Huanta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #000 0%, #8B0000 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139,0,0,0.3) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        section:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #8B0000;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #8B0000;
+        }
+
+        /* MVV Cards */
+        .mvv-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .mvv-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border-top: 5px solid #8B0000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mvv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139,0,0,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .mvv-card:hover::before {
+            left: 100%;
+        }
+
+        .mvv-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(139,0,0,0.3);
+        }
+
+        .mvv-card h3 {
+            color: #8B0000;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #8B0000;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(139,0,0,0.3);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #8B0000;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #8B0000;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -60px;
+        }
+
+        .timeline-year {
+            color: #8B0000;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #8B0000;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139,0,0,0.2);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8B0000, #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.2em;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #8B0000;
+            box-shadow: 0 0 0 3px rgba(139,0,0,0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8B0000, #000);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139,0,0,0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(139,0,0,0.2);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #f8f8f8;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #8B0000;
+            color: white;
+        }
+
+        .faq-question.active {
+            background: #8B0000;
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .faq-answer.active {
+            max-height: 300px;
+            padding: 20px;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 40px rgba(139,0,0,0.4);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139,0,0,0.8), rgba(0,0,0,0.8));
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 0;
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #8B0000;
+            transform: scale(1.2);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            animation: slideInDown 0.5s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 80px !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -60px;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8B0000, #000);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(139,0,0,0.4);
+            z-index: 100;
+        }
+
+        .scroll-indicator.visible {
+            opacity: 1;
+        }
+
+        .scroll-indicator:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(139,0,0,0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>🍷 Licorería Tambos</h1>
+            <p>Tu destino de confianza en Huanta desde 2018</p>
+            <p>Variedad, calidad y el mejor servicio en bebidas premium</p>
+        </div>
+    </div>
+
+    <!-- Presentación -->
+    <section>
+        <div class="container">
+            <h2>Bienvenidos a Tambos</h2>
+            <p style="text-align: center; font-size: 1.2em; max-width: 800px; margin: 30px auto; line-height: 1.8;">
+                Somos una licorería fundada en 2018 en el corazón de Huanta, Ayacucho. Nos especializamos en ofrecer un catálogo amplio y variado que incluye desde marcas comerciales reconocidas hasta bebidas premium e insumos locales. Nuestra misión es satisfacer los diferentes gustos y presupuestos de nuestros clientes, brindando siempre un servicio de calidad excepcional.
+            </p>
+            <p style="text-align: center; font-size: 1.2em; max-width: 800px; margin: 30px auto; line-height: 1.8;">
+                Ubicados estratégicamente en la Av. Mariscal Castilla, cerca a la plaza central de Huanta, estamos comprometidos con la innovación digital y el servicio 24/7 para estar siempre cerca de ti.
+            </p>
+        </div>
+    </section>
+
+    <!-- Misión, Visión y Valores -->
+    <section style="background: #f8f8f8;">
+        <div class="container">
+            <h2>Misión, Visión y Valores</h2>
+            <div class="mvv-container">
+                <div class="mvv-card">
+                    <h3>🎯 Misión</h3>
+                    <p>Ofrecer a nuestros clientes una amplia variedad de licores de calidad, brindando un servicio personalizado, accesible y confiable, con entrega rápida y múltiples opciones de pago, posicionándonos como la licorería de referencia en Huanta.</p>
+                </div>
+                <div class="mvv-card">
+                    <h3>🔭 Visión</h3>
+                    <p>Ser la licorería líder en Huanta y expandirnos a nivel regional, reconocidos por nuestra excelencia en servicio, innovación digital y compromiso con el consumo responsable, creando experiencias memorables para nuestros clientes.</p>
+                </div>
+                <div class="mvv-card">
+                    <h3>💎 Valores</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 10px 0;">✓ <strong>Calidad:</strong> Productos premium y verificados</li>
+                        <li style="margin: 10px 0;">✓ <strong>Confianza:</strong> Transparencia en cada transacción</li>
+                        <li style="margin: 10px 0;">✓ <strong>Servicio:</strong> Atención personalizada 24/7</li>
+                        <li style="margin: 10px 0;">✓ <strong>Innovación:</strong> Tecnología para tu comodidad</li>
+                        <li style="margin: 10px 0;">✓ <strong>Responsabilidad:</strong> Consumo consciente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Línea de Tiempo -->
+    <section>
+        <div class="container">
+            <h2>Nuestra Historia</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2018</div>
+                        <h3>Fundación</h3>
+                        <p>Nace Licorería Tambos en Huanta con el sueño de ofrecer variedad y calidad en bebidas alcohólicas a toda la comunidad.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h3>Expansión Digital</h3>
+                        <p>Implementamos servicio de delivery y pedidos por WhatsApp, adaptándonos a las nuevas necesidades de nuestros clientes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h3>Presencia en Redes</h3>
+                        <p>Lanzamiento oficial en redes sociales (Facebook, Instagram, TikTok) con estrategias de marketing digital y promociones exclusivas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>Innovación Web</h3>
+                        <p>Creación de nuestra página web interactiva con catálogo digital completo y sistema de pedidos en línea, consolidando nuestra posición como líder en la zona.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opiniones de Clientes -->
+    <section style="background: #f8f8f8;">
+        <div class="container">
+            <h2>Lo Que Dicen Nuestros Clientes</h2>
+            <div class="testimonials-grid" id="testimonialsGrid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <h4>María González</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p>"Excelente servicio y variedad de productos. El delivery es rápido y la atención siempre es personalizada. ¡Los recomiendo totalmente!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">J</div>
+                        <div>
+                            <h4>Juan Pérez</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p>"Los mejores precios de Huanta y siempre tienen las marcas que busco. El sistema de pedidos por WhatsApp es muy cómodo."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">A</div>
+                        <div>
+                            <h4>Ana Torres</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p>"Perfectos para eventos y celebraciones. Tienen licores premium a excelentes precios y las promociones son increíbles."</p>
+                </div>
+            </div>
+
+            <!-- Formulario de Opiniones -->
+            <div class="form-container">
+                <h3 style="text-align: center; color: #8B0000; margin-bottom: 20px;">Comparte Tu Experiencia</h3>
+                <form id="testimonialForm">
+                    <div class="form-group">
+                        <label for="testimonialName">Nombre completo *</label>
+                        <input type="text" id="testimonialName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimonialRating">Calificación *</label>
+                        <select id="testimonialRating" required>
+                            <option value="">Selecciona...</option>
+                            <option value="5">★★★★★ Excelente</option>
+                            <option value="4">★★★★☆ Muy bueno</option>
+                            <option value="3">★★★☆☆ Bueno</option>
+                            <option value="2">★★☆☆☆ Regular</option>
+                            <option value="1">★☆☆☆☆ Malo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimonialText">Tu opinión *</label>
+                        <textarea id="testimonialText" rows="4" required></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Enviar Pregunta</button>
+                    </div>
+                    <div class="success-message" id="faqSuccess">
+                        ¡Pregunta enviada! Pronto la verás publicada con su respuesta.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section style="background: #f8f8f8;">
+        <div class="container">
+            <h2>Nuestra Galería</h2>
+            <div class="gallery">
+                <div class="gallery-item" style="background: linear-gradient(135deg, #8B0000, #000);">
+                    <div class="gallery-placeholder">🍾</div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #000, #8B0000);">
+                    <div class="gallery-placeholder">🥃</div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #8B0000, #5d0000);">
+                    <div class="gallery-placeholder">🍷</div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #5d0000, #000);">
+                    <div class="gallery-placeholder">🍺</div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #000, #8B0000);">
+                    <div class="gallery-placeholder">🍸</div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #8B0000, #000);">
+                    <div class="gallery-placeholder">🥂</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-indicator" id="scrollTop">
+        ↑
+    </div>
+
+    <!-- Modal para Galería -->
+    <div class="modal" id="galleryModal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Formulario de Testimonios
+        document.getElementById('testimonialForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('testimonialName').value;
+            const rating = document.getElementById('testimonialRating').value;
+            const text = document.getElementById('testimonialText').value;
+            
+            const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+            const initial = name.charAt(0).toUpperCase();
+            
+            const testimonialCard = document.createElement('div');
+            testimonialCard.className = 'testimonial-card';
+            testimonialCard.style.animation = 'fadeInUp 0.6s ease';
+            testimonialCard.innerHTML = `
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">${initial}</div>
+                    <div>
+                        <h4>${name}</h4>
+                        <div class="stars">${stars}</div>
+                    </div>
+                </div>
+                <p>"${text}"</p>
+            `;
+            
+            document.getElementById('testimonialsGrid').appendChild(testimonialCard);
+            
+            document.getElementById('testimonialSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('testimonialSuccess').style.display = 'none';
+            }, 5000);
+            
+            e.target.reset();
+        });
+
+        // Formulario de Preguntas FAQ
+        document.getElementById('faqForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('faqName').value;
+            const question = document.getElementById('faqQuestion').value;
+            
+            const faqItem = document.createElement('div');
+            faqItem.className = 'faq-item';
+            faqItem.style.animation = 'fadeInUp 0.6s ease';
+            faqItem.innerHTML = `
+                <div class="faq-question">
+                    <span>${question}</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Gracias por tu pregunta, ${name}. Nos pondremos en contacto contigo pronto con la respuesta. También puedes escribirnos por WhatsApp para una respuesta más rápida.
+                </div>
+            `;
+            
+            const faqQuestion = faqItem.querySelector('.faq-question');
+            faqQuestion.addEventListener('click', () => {
+                const answer = faqQuestion.nextElementSibling;
+                const isActive = faqQuestion.classList.contains('active');
+                
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    faqQuestion.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+            
+            document.getElementById('faqContainer').appendChild(faqItem);
+            
+            document.getElementById('faqSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('faqSuccess').style.display = 'none';
+            }, 5000);
+            
+            e.target.reset();
+        });
+
+        // Gallery Modal
+        const modal = document.getElementById('galleryModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+        
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const clone = item.cloneNode(true);
+                clone.style.height = '80vh';
+                clone.style.maxWidth = '80vw';
+                modalContent.innerHTML = '';
+                modalContent.appendChild(clone);
+                modal.style.display = 'block';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scroll for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease';
+            observer.observe(section);
+        });
+
+        // Gallery hover effects
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+            item.style.animation = 'fadeInUp 0.6s ease both';
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover sound effect simulation
+        document.querySelectorAll('.btn, .gallery-item, .mvv-card').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            });
+        });
+
+        // Timeline animation on scroll
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            timelineObserver.observe(item);
+        });
+
+        // Dynamic text animation for hero
+        const heroText = document.querySelector('.hero p');
+        if (heroText) {
+            const text = heroText.textContent;
+            heroText.textContent = '';
+            let i = 0;
+            
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        }
+    </script>
+</body>
+
+
+    <!-- Preguntas Frecuentes -->
+    <section>
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-container" id="faqContainer">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cuál es el horario de atención?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Contamos con servicio de delivery 24/7. Nuestra tienda física está ubicada en Av. Mariscal Castilla, Huanta y puedes hacer pedidos en cualquier momento a través de WhatsApp o nuestra página web.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué métodos de pago aceptan?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Aceptamos efectivo contra entrega, transferencias bancarias, Yape, Plin, y tarjetas de crédito/débito. El 90% de nuestros pedidos pueden pagarse sin efectivo para tu comodidad.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Hacen entregas a domicilio?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sí, ofrecemos servicio de delivery en toda la zona de Huanta. Los tiempos de entrega varían según tu ubicación, pero generalmente realizamos entregas en menos de 30 minutos.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Tienen promociones o descuentos?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        ¡Por supuesto! Ofrecemos promociones periódicas en fechas festivas, combos especiales y descuentos por volumen. Síguenos en nuestras redes sociales para estar al tanto de todas nuestras ofertas.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué variedad de productos tienen?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Contamos con más de 20 referencias constantes de licores nacionales e importados, desde marcas comerciales reconocidas hasta bebidas premium. Revisamos y actualizamos nuestro catálogo mensualmente según tendencias y demanda.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de Preguntas -->
+            <div class="form-container" style="margin-top: 50px;">
+                <h3 style="text-align: center; color: #8B0000; margin-bottom: 20px;">¿Tienes Otra Pregunta?</h3>
+                <form id="faqForm">
+                    <div class="form-group">
+                        <label for="faqName">Nombre *</label>
+                        <input type="text" id="faqName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="faqEmail">Email</label>
+                        <input type="email" id="faqEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="faqQuestion">Tu pregunta *</label>
+                        <textarea id="faqQuestion" rows="3" required></textarea>
+                     <div style="text-align: center;">
+                        <button type="submit" class="btn">Enviar Opinión</button>
+                    </div>
+                    <div class="success-message" id="testimonialSuccess">
+                        ¡Gracias por tu opinión! Se ha publicado exitosamente.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+                    
 
   <footer>
     <div class="container">
@@ -70,7 +1183,7 @@
           <h5><i class="fas fa-wine-glass-alt"></i> Licorería Tambos</h5>
           <p>Tu mejor opción en bebidas premium. Ofrecemos los mejores rones, piscos y whiskies al mejor precio y con
             atención personalizada.</p>
-        </div>
+        </div> 
 
         <!-- 🔗 Apartado 2: Enlaces -->
         <div class="col-md-3 mb-4">

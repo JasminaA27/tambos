@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Términos y Condiciones</title>
+
+    <!-- ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #1e1e1e;
+        }
+
+        /* ---------- CABECERA ESTILO GOOGLE PDF ---------- */
+        .pdf-header {
+            width: 100%;
+            height: 50px;
+            background: #2b2b2b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #444;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .left-section i {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .filename {
+            font-size: 15px;
+            color: #e0e0e0;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .right-section i {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* ---------- AREA DEL PDF ---------- */
+        iframe {
+            width: 100%;
+            height: calc(100vh - 50px);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- CABECERA ESTILO GOOGLE VIEWER -->
+<div class="pdf-header">
+
+    <!-- IZQUIERDA: iconos + nombre -->
+    <div class="left-section">
+        <i class="fas fa-bars"></i>
+        <span class="filename">términos y condiciones-tambos.pdf</span>
+    </div>
+
+    <!-- DERECHA: acciones -->
+    <div class="right-section">
+        <a href="https://drive.google.com/file/d/1wpezHDoz94OqJ4wgWai4jZJbY3_JfHy9/" style="color:white;">
+            <i class="fas fa-download" title="Descargar"></i>
+        </a>
+        <i class="fas fa-print" title="Imprimir"></i>
+        <i class="fas fa-ellipsis-vertical" title="Opciones"></i>
+    </div>
+
+</div>
+
+<!-- PDF MOSTRADO DIRECTO -->
+<iframe src="https://drive.google.com/file/d/1wpezHDoz94OqJ4wgWai4jZJbY3_JfHy9/preview"></iframe>
+
+</body>
+</html>
